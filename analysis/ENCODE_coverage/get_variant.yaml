@@ -1,0 +1,69 @@
+name: get_variant
+description: Intersect VCF file with BED file
+
+# Define the resources needed for this pipeline.
+resources:
+  zones:
+  - us-central1-a
+  - us-central1-b
+  - us-central1-c
+  - us-central1-f
+  - us-east1-b
+  - us-east1-c
+  - us-east1-d
+
+  # Create a data disk that is attached to the VM and destroyed when the
+  # pipeline terminates.
+  disks:
+  - name: datadisk
+    autoDelete: True
+
+    # Within the Docker container, specify a mount point for the disk.
+    mountPoint: /mnt/data
+
+# Specify the Docker image to use along with the command
+docker:
+  imageName: wenwiliang/vcf_concordance
+
+  # The Pipelines API will create the input directory when localizing files,
+  # but does not create the output directory.
+  cmd: >
+    mkdir /mnt/data/output && 
+    find /mnt/data/input &&
+    samtools view -q 20 /mnt/data/input/${file} 6:151715174-152042328 | cut -f1,3,4 > /mnt/data/output/${file}.CCDC170.txt
+    zcat /mnt/data/input/PCA.r1.TCGAbarcode.merge.tnSwapCorrected.10389.vcf.gz | head -n 1000 | grep "#" > /mnt/data/output/header.txt &&
+    tabix -R /mnt/data/input/LSD.bed /mnt/data/input/PCA.r1.TCGAbarcode.merge.tnSwapCorrected.10389.vcf.gz > /mnt/data/output/subLSD.vcf &&
+    cat /mnt/data/output/header.txt /mnt/data/output/subLSD.vcf > /mnt/data/output/LSD.vcf &&
+    cat /mnt/data/output/LSD.vcf | awk '$1 ~ /^#/ {print $0;next} {print $0 | "LC_ALL=C sort -k1,1 -k2,2n"}' | bgzip -c > /mnt/data/output/LSD.vcf.gz &&
+    tabix -p vcf /mnt/data/output/LSD.vcf.gz &&
+    rm /mnt/data/output/subLSD.vcf /mnt/data/output/LSD.vcf 
+
+# The Pipelines API currently supports GCS paths, along with patterns (globs),
+# but it doesn't directly support a list of files being passed as a single input
+# parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
+inputParameters:
+- name: vcffile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: tbifile
+  description: Cloud Storage path
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: bedfile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+
+# By specifying an outputParameter, we instruct the pipelines API to
+# copy /mnt/data/output/* to the Cloud Storage location specified in
+# the pipelineArgs (see below).
+outputParameters:
+- name: outputPath
+  description: Cloud Storage path for where to samtools output
+  localCopy:
+    path: output/*
+    disk: datadisk
