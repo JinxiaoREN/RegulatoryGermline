@@ -12,4 +12,3 @@ RUN conda install bedtools samtools
 
 WORKDIR /home/biodocker
 
-COPY final.uniq.ENCODE.sorted.bed .
