@@ -4,9 +4,12 @@ LABEL base.image="biocontainers:latest"
 LABEL description="Calculate coverage based on a provided BED file"
 LABEL tags="Genomics"
 
-MAINTAINER Wen-Wei Liang <wenwiliang@gmail.com>
+MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
 RUN conda install bedtools samtools
-RUN conda update bedtools samtools
+
+WORKDIR /home/biodocker
+
+COPY final.uniq.ENCODE.sorted.bed .
