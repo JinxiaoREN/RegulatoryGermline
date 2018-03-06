@@ -1,5 +1,5 @@
-name: get_variant
-description: Intersect VCF file with BED file
+name: site_coverage
+description: Get coverage for a specific site
 
 # Define the resources needed for this pipeline.
 resources:
@@ -23,40 +23,37 @@ resources:
 
 # Specify the Docker image to use along with the command
 docker:
-  imageName: wenwiliang/vcf_concordance
+  imageName: wenwiliang/regulatorygermline
 
   # The Pipelines API will create the input directory when localizing files,
   # but does not create the output directory.
   cmd: >
     mkdir /mnt/data/output && 
     find /mnt/data/input &&
-    samtools view -q 20 /mnt/data/input/${file} 6:151715174-152042328 | cut -f1,3,4 > /mnt/data/output/${file}.CCDC170.txt
-    zcat /mnt/data/input/PCA.r1.TCGAbarcode.merge.tnSwapCorrected.10389.vcf.gz | head -n 1000 | grep "#" > /mnt/data/output/header.txt &&
-    tabix -R /mnt/data/input/LSD.bed /mnt/data/input/PCA.r1.TCGAbarcode.merge.tnSwapCorrected.10389.vcf.gz > /mnt/data/output/subLSD.vcf &&
-    cat /mnt/data/output/header.txt /mnt/data/output/subLSD.vcf > /mnt/data/output/LSD.vcf &&
-    cat /mnt/data/output/LSD.vcf | awk '$1 ~ /^#/ {print $0;next} {print $0 | "LC_ALL=C sort -k1,1 -k2,2n"}' | bgzip -c > /mnt/data/output/LSD.vcf.gz &&
-    tabix -p vcf /mnt/data/output/LSD.vcf.gz &&
-    rm /mnt/data/output/subLSD.vcf /mnt/data/output/LSD.vcf 
+    ln -s /mnt/data/input/*.bam /mnt/data/input/input.bam && 
+    samtools depth -a -q 15 -Q 10 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -f /mnt/data/input/input.bam > /mnt/data/output/${id}.ENCODEcov.txt
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
 inputParameters:
-- name: vcffile
-  description: Cloud Storage path or pattern to input file(s)
-  localCopy:
-    path: input/
-    disk: datadisk
-- name: tbifile
-  description: Cloud Storage path
-  localCopy:
-    path: input/
-    disk: datadisk
 - name: bedfile
   description: Cloud Storage path or pattern to input file(s)
   localCopy:
     path: input/
     disk: datadisk
+- name: bamfile
+  description: Cloud Storage path
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: baifile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: id
+  description: File names
 
 # By specifying an outputParameter, we instruct the pipelines API to
 # copy /mnt/data/output/* to the Cloud Storage location specified in
