@@ -29,9 +29,8 @@ docker:
   # but does not create the output directory.
   cmd: >
     mkdir /mnt/data/output && 
-    find /mnt/data/input &&
-    ln -s /mnt/data/input/*.bam /mnt/data/input/input.bam && 
-    samtools depth -a -q 15 -Q 10 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -f /mnt/data/input/input.bam > /mnt/data/output/${id}.ENCODEcov.txt
+    find /mnt/data/input && 
+    mosdepth -t 4 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -Q 10 --thresholds 1,10,20,30 ${id} /mnt/data/input/*.bam
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
