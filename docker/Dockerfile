@@ -8,7 +8,7 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install bedtools samtools=1.3.1
+RUN conda install bedtools samtools=1.3.1 mosdepth
 
 WORKDIR /data/
 
