@@ -31,6 +31,7 @@ docker:
     mkdir /mnt/data/output && 
     find /mnt/data/input && 
     mosdepth -t 4 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -Q 10 --thresholds 1,10,20,30 /mnt/data/output/${id} /mnt/data/input/*.bam &&
+    mkdir /mnt/data/output/${id} &&
     mv /mnt/data/output/${id}*.* /mnt/data/output/${id}/
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
