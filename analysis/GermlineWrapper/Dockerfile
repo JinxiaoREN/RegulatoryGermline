@@ -1,22 +1,14 @@
-FROM ubuntu:xenial
-MAINTAINER Shin Leong <sleong@wustl.edu>
-RUN apt-get update && apt-get install -y git binutils
-RUN apt-get install -y automake cmake git libncurses5-dev zlib1g-dev g++
+FROM biocontainers/biocontainers:latest
 
-RUN cd /usr/local/ 
-RUN git clone --recursive https://github.com/samtools/htslib
-RUN cd /usr/local/htslib 
-RUN make 
-RUN make install
-RUN cd /usr/local/ 
-RUN git clone --recursive https://github.com/genome/pindel.git
+LABEL base.image="biocontainers:latest"
+LABEL description="GermlineWrapper: Call germline variants from WXS/WGS BAMs"
+LABEL tags="Genomics"
 
-RUN apt-get install -y wget libopenblas-base libopenblas-dev
-RUN cd /usr/local/pindel/ 
-RUN ./INSTALL /usr/local/htslib
+MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
-RUN apt-get install -y libnss-sss
+USER root
 
-RUN apt-get clean
+RUN conda install pindel gatk varscan2
 
-RUN ln -s /usr/local/pindel/pindel /usr/local/bin/pindel
+WORKDIR /data/
+
