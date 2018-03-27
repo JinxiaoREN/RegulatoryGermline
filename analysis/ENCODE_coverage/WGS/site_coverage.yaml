@@ -1,5 +1,5 @@
-name: site_coverage
-description: Get coverage for a specific site
+name: region_coverage
+description: Get coverage for a specific region
 
 # Define the resources needed for this pipeline.
 resources:

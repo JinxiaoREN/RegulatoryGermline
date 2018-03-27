@@ -1,6 +1,6 @@
 ####
 #Aim: Generate google cloud command
-#Usage:
+#Usage: bash generate_command.sh ${List_of_BAMs} ${JobName} ${DiskSize(in gb)}
 #1. bash generate_command.sh TCGA_WGS_gspath_WWL_Mar2018.HighPass.txt HighPass 1500
 #2. bash generate_command.sh TCGA_WGS_gspath_WWL_Mar2018.LowPass.txt LowPass 100
 #Author: Wen-Wen Liang @ Wash U (liang.w@wustl.edu)
