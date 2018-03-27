@@ -8,7 +8,7 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install pindel gatk varscan2
+RUN conda install pindel varscan
 
 WORKDIR /data/
 
