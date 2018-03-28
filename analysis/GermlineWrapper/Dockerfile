@@ -8,11 +8,9 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install git pindel varscan
+RUN conda install git pindel varscan samtools
 RUN cd /home/biodocker
 RUN git clone https://github.com/ding-lab/germlinewrapper.git
-COPY germlinewrapper/*.pl .
-RUN rm -rf germlinewrapper
 
 WORKDIR /home/biodocker
 
