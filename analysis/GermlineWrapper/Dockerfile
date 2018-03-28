@@ -11,7 +11,7 @@ USER root
 RUN conda install git pindel varscan
 RUN cd /home/biodocker
 RUN git clone https://github.com/ding-lab/germlinewrapper.git
-RUN cp germlinewrapper/*.pl .
+COPY germlinewrapper/*.pl .
 RUN rm -rf germlinewrapper
 
 WORKDIR /home/biodocker
