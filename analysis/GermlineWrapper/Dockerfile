@@ -8,7 +8,8 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install pindel varscan
+RUN conda install git pindel varscan
+RUN git clone https://github.com/ding-lab/germlinewrapper.git
 
 WORKDIR /data/
 
