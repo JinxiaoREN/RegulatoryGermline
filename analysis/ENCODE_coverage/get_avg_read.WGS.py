@@ -35,10 +35,10 @@ for num, filename in enumerate(importfiles, 1):
 meanvals = vals / num
 
 subprocess.run('gsutil cp '+importfiles[1]+' .', shell=True)
-template=tsv_pth+"/"+importfiles[1].split('/')[6]
-with gzip.open(Path(template), "rt") as fin, codecs.open(str(key)+'avgcov.txt', 'w', encoding='utf-8', errors='ignore') as fout:
+template=tsv_pth+"/final.uniq.ENCODE.sorted.bed"
+with open(Path(template), "rt") as fin, codecs.open(str(key)+'avgcov.txt', 'w', encoding='utf-8', errors='ignore') as fout:
     writer = csv.writer(fout, delimiter='\t', lineterminator='\n')
     for row, val in zip(csv.reader(fin, delimiter='\t'), meanvals):
-        row[4] = val
+        row[5] = val
         writer.writerow(row)
 subprocess.run('rm '+template, shell=True)

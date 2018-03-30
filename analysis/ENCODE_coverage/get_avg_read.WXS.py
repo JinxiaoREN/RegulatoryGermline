@@ -30,11 +30,12 @@ for num, filename in enumerate(files, 1):
 meanvals = vals / num
 
 subprocess.run('gsutil cp '+files[1]+' '+tsv_pth, shell=True)
-template=tsv_pth+"/"+files[1].split('/')[6]
-with gzip.open(Path(template), "rt") as fin, codecs.open('TCGA.WXS.avgcov.txt', 'w', encoding='utf-8', errors='ignore') as fout:
+#Haven't tried if the following codes work
+template=tsv_pth+"/final.uniq.ENCODE.sorted.bed"
+with open(Path(template), "rt") as fin, codecs.open('TCGA.WXS.avgcov.txt', 'w', encoding='utf-8', errors='ignore') as fout:
     writer = csv.writer(fout, delimiter='\t', lineterminator='\n')
     for row, val in zip(csv.reader(fin, delimiter='\t'), meanvals):
-        row[4] = val
+        row[5] = val
         writer.writerow(row)
 subprocess.run('rm '+template, shell=True)
 print("All the calculation has been done")
