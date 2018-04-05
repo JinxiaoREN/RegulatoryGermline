@@ -1,5 +1,5 @@
-name: gatk_germline
-description: Call germline variant by using GATK
+name: pindel_varscan_germline
+description: Call germline variant by using Pindel and VarScan
 
 # Define the resources needed for this pipeline.
 resources:
@@ -23,14 +23,18 @@ resources:
 
 # Specify the Docker image to use along with the command
 docker:
-  imageName: broadinstitute/gatk
+  imageName: wenwiliang/pindel
 
   # The Pipelines API will create the input directory when localizing files,
   # but does not create the output directory.
   cmd: >
     mkdir /mnt/data/output && 
-    find /mnt/data/input && 
-    gatk HaplotypeCaller -R /mnt/data/input/GRCh37-lite.fa -I /mnt/data/input/*.bam -L /mnt/data/input/chrlist.txt -O /mnt/data/output/gatk/${id} --standard-min-confidence-threshold-for-calling 30.0 -RF NotDuplicateReadFilter -RF MappingQualityReadFilter -RF MappedReadFilter
+    mkdir /mnt/data/pindel &&
+    find /mnt/data/input &&
+    echo -e "$(ls /mnt/data/input/*.bam)\t500\t${id}" > /mnt/data/input/pindel.config &&
+    cd /mnt/data/pindel && 
+    pindel -c /mnt/data/input/chrlist.txt -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/GRCh37-lite.fa -i pindel.config &&
+    mv /mnt/data/pindel/* /mnt/data/output/
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
@@ -41,11 +45,6 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: faifile
-  description: Cloud Storage path or pattern to input files
-  localCopy:
-    path: input/
-    disk: datadisk
-- name: dictfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/
@@ -63,6 +62,11 @@ inputParameters:
 - name: id
   description: File names
 - name: chrlist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: centromerelist
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/

@@ -1,5 +1,5 @@
-name: gatk_germline
-description: Call germline variant by using GATK
+name: pindel_varscan_germline
+description: Call germline variant by using Pindel and VarScan
 
 # Define the resources needed for this pipeline.
 resources:
@@ -23,14 +23,19 @@ resources:
 
 # Specify the Docker image to use along with the command
 docker:
-  imageName: broadinstitute/gatk
+  imageName: wenwiliang/pindel
 
   # The Pipelines API will create the input directory when localizing files,
   # but does not create the output directory.
   cmd: >
     mkdir /mnt/data/output && 
-    find /mnt/data/input && 
-    gatk HaplotypeCaller -R /mnt/data/input/GRCh37-lite.fa -I /mnt/data/input/*.bam -L /mnt/data/input/chrlist.txt -O /mnt/data/output/gatk/${id} --standard-min-confidence-threshold-for-calling 30.0 -RF NotDuplicateReadFilter -RF MappingQualityReadFilter -RF MappedReadFilter
+    mkdir /mnt/data/varscan &&
+    find /mnt/data/input &&
+    ls /mnt/data/input/*.bam > /mnt/data/input/varscan.config &&
+    cd /mnt/data/varscan && 
+    samtools mpileup -q 1 -Q 13 -f /mnt/data/input/GRCh37-lite.fa -b /mnt/data/input/varscan.config | awk 'NF==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 &&
+    mv *.vcf ${id}.varscan.raw.snp.vcf &&
+    mv ${id}.varscan.raw.snp.vcf /mnt/data/output/
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
@@ -41,11 +46,6 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: faifile
-  description: Cloud Storage path or pattern to input files
-  localCopy:
-    path: input/
-    disk: datadisk
-- name: dictfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/
