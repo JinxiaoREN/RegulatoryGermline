@@ -3,6 +3,8 @@ description: Call germline variant by using GATK
 
 # Define the resources needed for this pipeline.
 resources:
+  minimumCpuCores: 2
+  minimumRamGb: 200
   zones:
   - us-central1-a
   - us-central1-b

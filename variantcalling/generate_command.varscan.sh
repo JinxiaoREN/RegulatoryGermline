@@ -14,5 +14,5 @@ while read lines; do
 	id=$(echo $lines | awk -F " " '{print $3}')
 	size=$3
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file pindel_varscan_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/varscan/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.varscan.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file varscan_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/varscan/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.varscan.sh
 done < $1
