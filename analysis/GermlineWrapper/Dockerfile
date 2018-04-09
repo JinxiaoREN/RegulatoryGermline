@@ -8,8 +8,6 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN apt-get install update
-RUN apt-get install docker
 RUN conda install git pindel varscan samtools picard rabix-bunny
 WORKDIR /home/biodocker
 RUN git clone https://github.com/ding-lab/germlinewrapper.git
