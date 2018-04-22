@@ -4,7 +4,7 @@ description: Call germline variant by using GATK
 # Define the resources needed for this pipeline.
 resources:
   minimumCpuCores: 2
-  minimumRamGb: 200
+  minimumRamGb: 30
   zones:
   - us-central1-a
   - us-central1-b
@@ -33,8 +33,8 @@ docker:
     mkdir /mnt/data/output && 
     find /mnt/data/input && 
     gatk HaplotypeCaller -R /mnt/data/input/GRCh37-lite.fa -I /mnt/data/input/*.bam -L /mnt/data/input/interval.list -O /mnt/data/input/${id}.gatk.raw.vcf --standard-min-confidence-threshold-for-calling 30.0 &&
-    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.gatk.snp.vcf -select-type SNP -select-type MNP &&
-    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.gatk.snp.vcf -select-type INDEL
+    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type SNP -select-type MNP &&
+    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type INDEL
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
@@ -66,6 +66,8 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: id
+  description: File names
+- name: pass
   description: File names
 - name: chrlist
   description: Cloud Storage path or pattern to input files

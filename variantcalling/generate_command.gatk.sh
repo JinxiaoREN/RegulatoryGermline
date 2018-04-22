@@ -12,7 +12,8 @@ while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')
 	bai=$(echo $lines | awk -F " " '{print $15}')
 	id=$(echo $lines | awk -F " " '{print $3}')
+	passvalue=$2
 	size=$3
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file gatk_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,dictfile=gs://dinglab/reference/GRCh37-lite.dict,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/interval.list --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/gatk/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.gatk.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file gatk_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,dictfile=gs://dinglab/reference/GRCh37-lite.dict,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/interval.list,pass=${passvalue}t --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/gatk/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.gatk.sh
 done < $1

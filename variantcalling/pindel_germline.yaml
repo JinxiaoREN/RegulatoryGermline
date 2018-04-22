@@ -4,7 +4,7 @@ description: Call germline variant by using Pindel
 # Define the resources needed for this pipeline.
 resources:
   minimumCpuCores: 2
-  minimumRamGb: 30
+  minimumRamGb: 20
   zones:
   - us-central1-a
   - us-central1-b
@@ -33,9 +33,7 @@ docker:
     mkdir /mnt/data/output && 
     find /mnt/data/input &&
     echo -e "$(ls /mnt/data/input/*.bam)\t500\t${id}" > /mnt/data/input/pindel.config &&
-    pindel -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/GRCh37-lite.fa -i /mnt/data/input/pindel.config -o /mnt/data/output/${id} &&
-    perl ./germlinewrapper/pindel_filter.v0.5.pl /mnt/data/input/pindel.config
-
+    pindel -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/GRCh37-lite.fa -i /mnt/data/input/pindel.config -o /mnt/data/output/${id}
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
