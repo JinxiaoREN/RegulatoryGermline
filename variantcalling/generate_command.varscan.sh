@@ -7,7 +7,7 @@
 ####
 
 
-echo "#" > gcloud_command.$2.varscan.sh
+echo "#" > cloud/gcloud_command.$2.varscan.sh
 while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')
 	bai=$(echo $lines | awk -F " " '{print $15}')
@@ -15,5 +15,5 @@ while read lines; do
 	passvalue=$2
 	size=$3
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file varscan_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt,pass=${passvalue} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/varscan/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.varscan.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file ../varscan_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt,pass=${passvalue} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/varscan/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/varscan/${passvalue}/ --disk-size datadisk:${size}" >> cloud/gcloud_command.$2.varscan.sh
 done < $1

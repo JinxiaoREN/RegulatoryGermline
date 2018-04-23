@@ -7,12 +7,12 @@
 ####
 
 
-echo "#" > gcloud_command.$2.pindel.sh
+echo "#" > cloud/gcloud_command.$2.pindel.sh
 while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')
 	bai=$(echo $lines | awk -F " " '{print $15}')
 	id=$(echo $lines | awk -F " " '{print $3}')
 	size=$3
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file pindel_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt,centromerelist=gs://dinglab/wliang_germlinevariantcalling/pindel-centromere-exclude.bed --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/pindel/ --logging gs://dinglab/wliang_germlinevariantcalling/logging --disk-size datadisk:${size}" >> gcloud_command.$2.pindel.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file ../pindel_germline.yaml --inputs fafile=gs://dinglab/reference/GRCh37-lite.fa,faifile=gs://dinglab/reference/GRCh37-lite.fa.fai,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/chrlist.txt,centromerelist=gs://dinglab/wliang_germlinevariantcalling/pindel-centromere-exclude.bed --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/pindel/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/pindel/${passvalue}/ --disk-size datadisk:${size}" >> clound/gcloud_command.$2.pindel.sh
 done < $1
