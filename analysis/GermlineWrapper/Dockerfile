@@ -8,7 +8,7 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install git pindel varscan samtools picard rabix-bunny
+RUN conda install git pindel varscan samtools
 WORKDIR /home/biodocker
 RUN git clone https://github.com/ding-lab/germlinewrapper.git
 
