@@ -33,7 +33,12 @@ docker:
     mkdir /mnt/data/output && 
     find /mnt/data/input &&
     echo -e "$(ls /mnt/data/input/*.bam)\t500\t${id}" > /mnt/data/input/pindel.config &&
-    pindel -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/GRCh37-lite.fa -i /mnt/data/input/pindel.config -o /mnt/data/output/${id}
+    pindel -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/GRCh37-lite.fa -i /mnt/data/input/pindel.config -o /mnt/data/input/ &&
+    find /mnt/data/input/ -name '*_D' -o -name '*_SI' -o -name '*_INV' -o -name '*_TD' > /mnt/data/input/outlist &&
+    list=$(xargs -a  /mnt/data/input/outlist) &&
+    cat ${list} | grep ChrID > /mnt/data/input/pindel.out.raw &&
+    perl germlinewrapper/pindel_filter.v0.5.pl /mnt/data/input/pindel.input.37.txt &&
+    cp /mnt/data/input/*.vcf  /mnt/data/output/
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
@@ -66,6 +71,11 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: centromerelist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: inputfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/

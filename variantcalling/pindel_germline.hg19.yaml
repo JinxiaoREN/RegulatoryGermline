@@ -1,10 +1,10 @@
-name: gatk_germline
-description: Call germline variant by using GATK
+name: pindel_germline
+description: Call germline variant by using Pindel
 
 # Define the resources needed for this pipeline.
 resources:
   minimumCpuCores: 2
-  minimumRamGb: 30
+  minimumRamGb: 20
   zones:
   - us-central1-a
   - us-central1-b
@@ -25,17 +25,20 @@ resources:
 
 # Specify the Docker image to use along with the command
 docker:
-  imageName: broadinstitute/gatk
+  imageName: wenwiliang/pindel
 
   # The Pipelines API will create the input directory when localizing files,
   # but does not create the output directory.
   cmd: >
     mkdir /mnt/data/output && 
-    find /mnt/data/input && 
-    gatk HaplotypeCaller -R /mnt/data/input/GRCh37-lite.fa -I /mnt/data/input/*.bam -L /mnt/data/input/interval.list -O /mnt/data/input/${id}.gatk.raw.vcf --standard-min-confidence-threshold-for-calling 30.0 &&
-    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type SNP -select-type MNP &&
-    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type INDEL
-
+    find /mnt/data/input &&
+    echo -e "$(ls /mnt/data/input/*.bam)\t500\t${id}" > /mnt/data/input/pindel.config &&
+    pindel -x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -T 2 -r -t -J /mnt/data/input/pindel-centromere-exclude.bed -f /mnt/data/input/Homo_sapiens_assembly19.fasta -i /mnt/data/input/pindel.config -o /mnt/data/input/ &&
+    find /mnt/data/input/ -name '*_D' -o -name '*_SI' -o -name '*_INV' -o -name '*_TD' > /mnt/data/input/outlist &&
+    list=$(xargs -a  /mnt/data/input/outlist) &&
+    cat ${list} | grep ChrID > /mnt/data/input/pindel.out.raw &&
+    perl germlinewrapper/pindel_filter.v0.5.pl /mnt/data/input/pindel.input.hg19.txt &&
+    cp /mnt/data/input/*.vcf  /mnt/data/output/
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
@@ -46,11 +49,6 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: faifile
-  description: Cloud Storage path or pattern to input files
-  localCopy:
-    path: input/
-    disk: datadisk
-- name: dictfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/
@@ -67,9 +65,17 @@ inputParameters:
     disk: datadisk
 - name: id
   description: File names
-- name: pass
-  description: File names
 - name: chrlist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: centromerelist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: inputfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/

@@ -1,0 +1,80 @@
+name: varscan_germline
+description: Call germline variant by using VarScan
+
+# Define the resources needed for this pipeline.
+resources:
+  minimumCpuCores: 2
+  minimumRamGb: 15
+  zones:
+  - us-central1-a
+  - us-central1-b
+  - us-central1-c
+  - us-central1-f
+  - us-east1-b
+  - us-east1-c
+  - us-east1-d
+
+  # Create a data disk that is attached to the VM and destroyed when the
+  # pipeline terminates.
+  disks:
+  - name: datadisk
+    autoDelete: True
+
+    # Within the Docker container, specify a mount point for the disk.
+    mountPoint: /mnt/data
+
+# Specify the Docker image to use along with the command
+docker:
+  imageName: wenwiliang/pindel
+
+  # The Pipelines API will create the input directory when localizing files,
+  # but does not create the output directory.
+  cmd: >
+    mkdir /mnt/data/output && 
+    find /mnt/data/input &&
+    ls /mnt/data/input/*.bam > /mnt/data/input/varscan.config &&
+    samtools mpileup -q 1 -Q 13 -f /mnt/data/input/Homo_sapiens_assembly19.fasta -b /mnt/data/input/varscan.config | awk 'NF==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > /mnt/data/output/${id}.${pass}.varscan.raw.snp.vcf &&
+    samtools mpileup -q 1 -Q 13 -f /mnt/data/input/Homo_sapiens_assembly19.fasta -b /mnt/data/input/varscan.config | awk 'NF==6' | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > /mnt/data/output/${id}.${pass}.varscan.raw.indel.vcf
+# The Pipelines API currently supports GCS paths, along with patterns (globs),
+# but it doesn't directly support a list of files being passed as a single input
+# parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
+inputParameters:
+- name: fafile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: faifile
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: bamfile
+  description: Cloud Storage path
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: baifile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: id
+  description: File names
+- name: pass
+  description: File names
+- name: chrlist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+
+# By specifying an outputParameter, we instruct the pipelines API to
+# copy /mnt/data/output/* to the Cloud Storage location specified in
+# the pipelineArgs (see below).
+outputParameters:
+- name: outputPath
+  description: Cloud Storage path for where to samtools output
+  localCopy:
+    path: output/*
+    disk: datadisk
