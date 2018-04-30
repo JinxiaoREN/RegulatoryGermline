@@ -3,6 +3,7 @@ description: Get coverage for a specific site
 
 # Define the resources needed for this pipeline.
 resources:
+  preemptible: true
   zones:
   - us-central1-a
   - us-central1-b
@@ -31,7 +32,7 @@ docker:
   cmd: >
     mkdir /mnt/data/output && 
     find /mnt/data/input && 
-    mosdepth -n -t 4 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -Q 10 --thresholds 1,10,20,30 /mnt/data/output/${id} /mnt/data/input/*.bam
+    mosdepth -t 4 -b /mnt/data/input/final.uniq.ENCODE.sorted.bed -Q 10 --thresholds 1,10,20,30 /mnt/data/output/${id} /mnt/data/input/*.bam
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
