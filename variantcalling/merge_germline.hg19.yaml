@@ -39,7 +39,7 @@ docker:
     cd /root/ &&
     gsutil cp gs://dinglab/wliang_germlinevariantcalling/filter_gatk_varscan.cloud.pl . &&
     perl filter_gatk_varscan.cloud.pl /mnt/data/input/ ${id} ${passvalue} &&
-    gatk CombineVariants -R /mnt/data/input/GRCh37-lite.fa -O /mnt/data/output/${id}.merged.vcf --variant:gsnp /mnt/data/input/gatk/${id}.${passvalue}.gatk.snp.filtered.vcf --variant:gindel /mnt/data/input/gatk/${id}.${passvalue}.gatk.indel.filtered.vcf --variant:vsnp /mnt/data/input/varscan/${id}.${passvalue}.varscan.snp.filtered.vcf --variant:vindel /mnt/data/input/varscan/${id}.${passvalue}.varscan.indel.filtered.vcf --variant:pindel /mnt/data/input/pindel/pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel
+    gatk CombineVariants -R /mnt/data/input/Homo_sapiens_assembly19.fasta -O /mnt/data/output/${id}.merged.vcf --variant:gsnp /mnt/data/input/gatk/${id}.${passvalue}.gatk.snp.filtered.vcf --variant:gindel /mnt/data/input/gatk/${id}.${passvalue}.gatk.indel.filtered.vcf --variant:vsnp /mnt/data/input/varscan/${id}.${passvalue}.varscan.snp.filtered.vcf --variant:vindel /mnt/data/input/varscan/${id}.${passvalue}.varscan.indel.filtered.vcf --variant:pindel /mnt/data/input/pindel/pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
