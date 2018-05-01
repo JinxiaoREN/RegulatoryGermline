@@ -34,7 +34,7 @@ docker:
     find /mnt/data/input && 
     gatk HaplotypeCaller -R /mnt/data/input/GRCh37-lite.fa -I /mnt/data/input/*.bam -L /mnt/data/input/interval.list -O /mnt/data/input/${id}.gatk.raw.vcf --standard-min-confidence-threshold-for-calling 30.0 &&
     gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type SNP -select-type MNP &&
-    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.snp.vcf -select-type INDEL
+    gatk SelectVariants -R /mnt/data/input/GRCh37-lite.fa -V /mnt/data/input/${id}.gatk.raw.vcf -O /mnt/data/output/${id}.${pass}.gatk.indel.vcf -select-type INDEL
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input

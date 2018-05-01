@@ -38,7 +38,7 @@ docker:
     list=$(xargs -a  /mnt/data/input/outlist) &&
     cat ${list} | grep ChrID > /mnt/data/input/pindel.out.raw &&
     perl germlinewrapper/pindel_filter.v0.5.pl /mnt/data/input/pindel.input.hg19.txt &&
-    cp /mnt/data/input/*.vcf  /mnt/data/output/
+    mv /mnt/data/input/*.vcf  /mnt/data/output/
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").

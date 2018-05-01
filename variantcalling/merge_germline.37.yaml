@@ -1,0 +1,91 @@
+name: merge_germline
+description: Merge germline variant by using GATK
+
+# Define the resources needed for this pipeline.
+resources:
+  minimumCpuCores: 2
+  minimumRamGb: 10
+  zones:
+  - us-central1-a
+  - us-central1-b
+  - us-central1-c
+  - us-central1-f
+  - us-east1-b
+  - us-east1-c
+  - us-east1-d
+
+  # Create a data disk that is attached to the VM and destroyed when the
+  # pipeline terminates.
+  disks:
+  - name: datadisk
+    autoDelete: True
+
+    # Within the Docker container, specify a mount point for the disk.
+    mountPoint: /mnt/data
+
+# Specify the Docker image to use along with the command
+docker:
+  imageName: broadinstitute/gatk
+
+  # The Pipelines API will create the input directory when localizing files,
+  # but does not create the output directory.
+  cmd: >
+    mkdir /mnt/data/output && 
+    find /mnt/data/input &&
+    mkdir -p /mnt/data/input/gatk/ /mnt/data/input/varscan/ /mnt/data/input/pindel/ &&
+    mv /mnt/data/input/*.gatk.* /mnt/data/input/gatk/ &&
+    mv /mnt/data/input/*.varscan.* /mnt/data/input/varscan/ &&
+    mv /mnt/data/input/*.pindel.*/ /mnt/data/input/pindel/ &&
+    cd /root/ &&
+    gsutil cp gs://dinglab/wliang_germlinevariantcalling/filter_gatk_varscan.cloud.pl . &&
+    perl filter_gatk_varscan.pl /mnt/data/input/ ${id} &&
+    gatk CombineVariants -R /mnt/data/input/GRCh37-lite.fa -O /mnt/data/output/${id}.merged.vcf --variant:gsnp /mnt/data/input/gatk/${id}.${passvalue}.gatk.snp.filtered.vcf --variant:gindel /mnt/data/input/gatk/${id}.${passvalue}.gatk.indel.filtered.vcf --variant:vsnp /mnt/data/input/${id}.${passvalue}.varscan.snp.filtered.vcf --variant:vindel /mnt/data/input/${id}.${passvalue}.varscan.indel.filtered.vcf --variant:pindel pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel
+
+# The Pipelines API currently supports GCS paths, along with patterns (globs),
+# but it doesn't directly support a list of files being passed as a single input
+# parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
+inputParameters:
+- name: fafile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: faifile
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: dictfile
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: bamfile
+  description: Cloud Storage path
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: baifile
+  description: Cloud Storage path or pattern to input file(s)
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: id
+  description: File names
+- name: pass
+  description: File names
+- name: chrlist
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+
+# By specifying an outputParameter, we instruct the pipelines API to
+# copy /mnt/data/output/* to the Cloud Storage location specified in
+# the pipelineArgs (see below).
+outputParameters:
+- name: outputPath
+  description: Cloud Storage path for where to samtools output
+  localCopy:
+    path: output/*
+    disk: datadisk
