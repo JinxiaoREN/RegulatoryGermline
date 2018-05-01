@@ -7,7 +7,7 @@ use strict;
 use warnings;
 die unless @ARGV == 2;
 
-my ($run_dir,$sample_name)=@ARGV;
+my ($run_dir,$sample_name,$passvalue)=@ARGV;
 
 my $pindel_vcf=$run_dir."/pindel/pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf"; 
 my $gatk_vcf=$run_dir."/gatk/".$sample_name.$passvalue".gatk.indel.vcf";
