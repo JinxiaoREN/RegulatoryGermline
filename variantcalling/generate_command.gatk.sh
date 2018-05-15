@@ -6,7 +6,7 @@
 #Author: Wen-Wen Liang @ Wash U (liang.w@wustl.edu)
 ####
 
-
+mkdir -p cloud
 echo "#" > cloud/gcloud_command.$2.gatk.sh
 while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')

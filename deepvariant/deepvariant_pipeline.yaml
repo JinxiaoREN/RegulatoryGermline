@@ -15,7 +15,7 @@ docker:
   cmd: |
     ./opt/deepvariant_runner/bin/gcp_deepvariant_runner \
       --project "${PROJECT_ID}" \
-      --zones us-west1-b us-east1-d \
+      --zones us-west1-b \
       --docker_image "${DOCKER_IMAGE}" \
       --docker_image_gpu "${DOCKER_IMAGE_GPU}" \
       --gpu \
@@ -31,7 +31,7 @@ docker:
       --make_examples_disk_per_worker_gb "${SIZE}" \
       --call_variants_workers 16 \
       --call_variants_cores_per_worker 8 \
-      --call_variants_ram_per_worker_gb 60 \
+      --call_variants_ram_per_worker_gb 30 \
       --call_variants_disk_per_worker_gb 50 \
       --preemptible \
       --max_preemptible_tries 5

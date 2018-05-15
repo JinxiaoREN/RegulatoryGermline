@@ -15,7 +15,7 @@ pass=$(echo ${lines} | awk -F " " '{print $18}')
 bam=$(echo ${lines} | awk -F " " '{print $14}')
 ref=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/reference/Homo_sapiens_assembly19.fasta"; else print "gs://dinglab/reference/GRCh37-lite.fa"}')
 size=$(echo $lines | awk -F " " '{print ($10*1.2)/1000000000}' | awk -F " " '{ if ($1 >=200) printf "%.0f", $1; else print "200"}')
-STAGING_FOLDER_NAME=${id}.${pass}.stage
+STAGING_FOLDER_NAME=${id}.${pass}.stage.speed
 OUTPUT_FILE_NAME=${id}.${pass}.deepvariant.vcf
 
 # Run the pipeline.
@@ -37,4 +37,4 @@ REF="${ref}", \
 SIZE="${size}" \
 | tr -d '[:space:]'`
 
-done < test.txt
+done < ~/job/test.txt
