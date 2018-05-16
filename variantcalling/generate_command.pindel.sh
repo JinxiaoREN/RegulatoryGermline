@@ -12,7 +12,7 @@ while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')
 	bai=$(echo $lines | awk -F " " '{print $15}')
 	id=$(echo $lines | awk -F " " '{print $3}')
-	size=$(echo $lines | awk -F " " '{print ($10*1.5)/1000000000}' | awk '{printf "%.0f", $1}')
+	size=$(echo $lines | awk -F " " '{print ($10*1.5)/1000000000}' | awk '{printf "%.0f", $1}' | awk '{if ($1 <=50) print "50"; else print $1}')
 	ref=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/reference/Homo_sapiens_assembly19.fasta"; else print "gs://dinglab/reference/GRCh37-lite.fa"}')
 	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "~/RegulatoryGermline/variantcalling/pindel_germline.hg19.yaml"; else print "~/RegulatoryGermline/variantcalling/pindel_germline.37.yaml"}')
 	config=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/wliang_germlinevariantcalling/pindel.input.hg19.txt"; else print "gs://dinglab/wliang_germlinevariantcalling/pindel.input.37.txt"}')

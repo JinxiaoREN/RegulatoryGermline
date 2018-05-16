@@ -13,7 +13,7 @@ while read lines; do
 	bai=$(echo $lines | awk -F " " '{print $15}')
 	id=$(echo $lines | awk -F " " '{print $3}')
 	passvalue=$2
-	size=$(echo $lines | awk -F " " '{print ($10*1.1)/1000000000}' | awk '{printf "%.0f", $1}')
+	size=$(echo $lines | awk -F " " '{print ($10*1.1)/1000000000}' | awk '{printf "%.0f", $1}' | awk '{if ($1 <=50) print "50"; else print $1}')
 	ref=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/reference/Homo_sapiens_assembly19.fasta"; else print "gs://dinglab/reference/GRCh37-lite.fa"}')
 	dict=$(echo $ref | awk -F "." '{print $1}')
 	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "~/RegulatoryGermline/variantcalling/gatk_germline.hg19.yaml"; else print "~/RegulatoryGermline/variantcalling/gatk_germline.37.yaml"}')
