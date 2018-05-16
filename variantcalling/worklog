@@ -1,6 +1,9 @@
-bash generate_command.gatk.sh reference/TCGA_WGS_gspath_WWL_Mar2018.HighPass.normal.txt HighPass 1500
-bash generate_command.gatk.sh reference/TCGA_WGS_gspath_WWL_Mar2018.LowPass.normal.txt LowPass 100
-bash generate_command.varscan.sh reference/TCGA_WGS_gspath_WWL_Mar2018.HighPass.normal.txt HighPass 1500
-bash generate_command.varscan.sh reference/TCGA_WGS_gspath_WWL_Mar2018.LowPass.normal.txt LowPass 100
-for i in `ls cloud/gcloud_command.*`; do cat $i | awk 'NR>1{print $0}' | head -n 10 >> cloud/firstbatch.sh; done
-bash cloud/firstbatch.sh 2> cloud/log
+wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash generate_command.gatk.sh ~/job/gatk.lowpass.todo.txt LowPass
+wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash ~/job/cloud/gcloud_command.LowPass.gatk.sh
+Running [operations/EKHv7M22LBiq9-asvq-1lbQBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/ENj07M22LBii7o7LjNv5oi4g6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EJv67M22LBj0wajJnZyPzvkBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EMj_7M22LBjr1ZnX8MHT8V8g6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EIyF7c22LBjcqKaD_8aVv6IBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/ELaK7c22LBiY0oyH8sKeu8EBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EIKQ7c22LBi95pykqMuk4q4BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].

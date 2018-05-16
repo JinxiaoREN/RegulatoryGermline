@@ -6,8 +6,8 @@
 #Author: Wen-Wen Liang @ Wash U (liang.w@wustl.edu)
 ####
 
-mkdir -p cloud
-echo "#" > cloud/gcloud_command.$2.gatk.sh
+mkdir -p ~/job/cloud
+echo "#" > ~/job/cloud/gcloud_command.$2.gatk.sh
 while read lines; do
 	bam=$(echo $lines | awk -F " " '{print $14}')
 	bai=$(echo $lines | awk -F " " '{print $15}')
@@ -16,7 +16,7 @@ while read lines; do
 	size=$(echo $lines | awk -F " " '{print ($10*1.1)/1000000000}' | awk '{printf "%.0f", $1}')
 	ref=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/reference/Homo_sapiens_assembly19.fasta"; else print "gs://dinglab/reference/GRCh37-lite.fa"}')
 	dict=$(echo $ref | awk -F "." '{print $1}')
-	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "../gatk_germline.hg19.yaml"; else print "../gatk_germline.37.yaml"}')
+	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "~/RegulatoryGermline/variantcalling/gatk_germline.hg19.yaml"; else print "~/RegulatoryGermline/variantcalling/gatk_germline.37.yaml"}')
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file ${yaml} --inputs fafile=${ref},faifile=${ref}.fai,dictfile=${dict}.dict,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/interval.list,pass=${passvalue} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/gatk/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/gatk/${passvalue}/ --disk-size datadisk:${size}" >> cloud/gcloud_command.$2.gatk.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file ${yaml} --inputs fafile=${ref},faifile=${ref}.fai,dictfile=${dict}.dict,bamfile=${bam},baifile=${bai},id=${id},chrlist=gs://dinglab/wliang_germlinevariantcalling/interval.list,pass=${passvalue} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/gatk/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/gatk/${passvalue}/ --disk-size datadisk:${size}" >> ~/job/cloud/gcloud_command.$2.gatk.sh
 done < $1
