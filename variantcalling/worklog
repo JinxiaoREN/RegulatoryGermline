@@ -1,9 +1,14 @@
-wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash generate_command.gatk.sh ~/job/gatk.lowpass.todo.txt LowPass
-wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash ~/job/cloud/gcloud_command.LowPass.gatk.sh
-Running [operations/EKHv7M22LBiq9-asvq-1lbQBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/ENj07M22LBii7o7LjNv5oi4g6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EJv67M22LBj0wajJnZyPzvkBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/EMj_7M22LBjr1ZnX8MHT8V8g6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EIyF7c22LBjcqKaD_8aVv6IBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/ELaK7c22LBiY0oyH8sKeu8EBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/EIKQ7c22LBi95pykqMuk4q4BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/ELvI8qC4LBjavof0n97s2yYg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EJXO8qC4LBjHpsf8mZyquooBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EOXT8qC4LBjX3sCbyPaykgEg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EN_Z8qC4LBjeiobbq77mxUkg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EJvf8qC4LBiH-PqKxqmVp44BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EMHk8qC4LBiS__TZ1baa6BUg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EKrq8qC4LBjqmIjO_4Snn2Ug6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EMbx8qC4LBi97PLE_6jyxEUg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EKaf86C4LBifj8-EoJKNloIBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/ENak86C4LBi356aUuobl7wMg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EKKr86C4LBijnorF-6GN_fEBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/ENWw86C4LBi7prCX0LyTojYg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EPO186C4LBiKjY3i9M6NzAwg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EPe786C4LBi84OvLk4Lii68BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].

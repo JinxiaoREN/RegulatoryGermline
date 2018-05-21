@@ -55,10 +55,9 @@ inputParameters:
   localCopy:
     path: input/
     disk: datadisk
-    disk: datadisk
 - name: id
   description: File names
-- name: pass
+- name: passvalue
   description: File names
 - name: gsnp
   description: Cloud Storage path or pattern to input files

@@ -1,0 +1,8 @@
+iwliang@wliang-germline-noncoding:~/RegulatoryGermline/deepvariant$ bash run.deepvariant.sh ~/job/deepvariant.HighPass.todo.txt
+Running [operations/EO_ml822LBjQ0O-S9uSF57kBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EO3sl822LBiepJ65mLCUzHcg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EL7yl822LBil7baSvLGmpWsg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EKr4l822LBi_h7-Syuu6jNwBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+wliang@wliang-germline-noncoding:~/RegulatoryGermline/deepvariant$ bash run.deepvariant.sh ~/job/deepvariant.LowPass.todo.txt
+Running [operations/EMzimM22LBjQ18KRvt-hgWEg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/ELXomM22LBibr6SkstG1rLcBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].

@@ -7,19 +7,19 @@
 ####
 
 
-echo "#" > cloud/gcloud_command.$2.merge.sh
+echo "#" > ~/job/cloud/gcloud_command.$2.merge.sh
 while read lines; do
 	id=$(echo $lines | awk -F " " '{print $3}')
 	passvalue=$2
-	size=$(echo $lines | awk -F " " '{print ($10*1.1)/1000000000}' | awk '{printf "%.0f", $1}')
+	size=$(echo $lines | awk -F " " '{print ($10*1.1)/1000000000}' | awk '{printf "%.0f", $1}' | awk '{if ($1 <=50) print "50"; else print $1}')
 	dict=$(echo $ref | awk -F "." '{print $1}')
 	ref=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "gs://dinglab/reference/Homo_sapiens_assembly19.fasta"; else print "gs://dinglab/reference/GRCh37-lite.fa"}')
-	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "../merge_germline.hg19.yaml"; else print "../merge_germline.37.yaml"}')
-	gatk_snp_path="gs://dinglab/wliang_germlinevariantcalling/output/gatk/${id}/${id}.${passvalue}.gatk.snv.vcf"
+	yaml=$(echo $lines | awk -F " " '{if ($8=="HG19_Broad_variant") print "~/RegulatoryGermline/variantcalling/merge_germline.hg19.yaml"; else print "~/RegulatoryGermline/variantcalling/merge_germline.37.yaml"}')
+	gatk_snp_path="gs://dinglab/wliang_germlinevariantcalling/output/gatk/${id}/${id}.${passvalue}.gatk.snp.vcf"
 	gatk_indel_path="gs://dinglab/wliang_germlinevariantcalling/output/gatk/${id}/${id}.${passvalue}.gatk.indel.vcf"
-	varscan_snp_path="gs://dinglab/wliang_germlinevariantcalling/output/varscan/${id}/${id}.${passvalue}.varscan.raw.snv.vcf"
-	varscan_indel_path="gs://dinglab/wliang_germlinevariantcalling/output/varscan/${id}/${id}.${passvalue}.varscan.raw.snv.vcf"
-	pindel_path="gs://dinglab/wliang_germlinevariantcalling/output/pindel/${id}/pindel.out.raw.CvgVafStrand_pass.vcf"
+	varscan_snp_path="gs://dinglab/wliang_germlinevariantcalling/output/varscan/${id}/${id}.${passvalue}.varscan.raw.snp.vcf"
+	varscan_indel_path="gs://dinglab/wliang_germlinevariantcalling/output/varscan/${id}/${id}.${passvalue}.varscan.raw.indel.vcf"
+	pindel_path="gs://dinglab/wliang_germlinevariantcalling/output/pindel/${passvalue}/${id}/pindel.out.raw.CvgVafStrand_pass.vcf"
 
-	echo "gcloud alpha genomics pipelines run --pipeline-file ${yaml} --inputs fafile=${ref},faifile=${ref}.fai,id=${id},pass=${passvalue},gsnp=${gatk_snp_path},gindel=${gatk_indel_path},vsnp=${varscan_snp_path},vindel=${varscan_indel_path},pinde=${pindel_path} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/merge/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/merge/${passvalue}/ --disk-size datadisk:${size}" >> cloud/gcloud_command.$2.merge.sh
+	echo "gcloud alpha genomics pipelines run --pipeline-file ${yaml} --inputs fafile=${ref},faifile=${ref}.fai,id=${id},passvalue=${passvalue},gsnp=${gatk_snp_path},gindel=${gatk_indel_path},vsnp=${varscan_snp_path},vindel=${varscan_indel_path},pindel=${pindel_path} --outputs outputPath=gs://dinglab/wliang_germlinevariantcalling/output/merge/${id}/ --logging gs://dinglab/wliang_germlinevariantcalling/logging/merge/${passvalue}/ --disk-size datadisk:${size}" >> ~/job/cloud/gcloud_command.$2.merge.sh
 done < $1

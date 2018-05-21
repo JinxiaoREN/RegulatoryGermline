@@ -37,4 +37,4 @@ REF="${ref}", \
 SIZE="${size}" \
 | tr -d '[:space:]'`
 
-done < ~/job/test.txt
+done < $1
