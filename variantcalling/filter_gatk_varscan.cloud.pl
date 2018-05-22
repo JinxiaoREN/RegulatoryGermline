@@ -32,13 +32,13 @@ my %varsvcf=();
 my %removegatk=();
 my %removevars=();
 
-open(INP,"<$pindel_vcf"); 
-open(ING,"<$gatk_vcf"); 
-open(INV,"<$vars_vcf"); 
+open(INP,"<$pindel_vcf") or die "Can't open '$pindel_vcf': $!";
+open(ING,"<$gatk_vcf") or die "Can't open '$gatk_vcf': $!"; 
+open(INV,"<$vars_vcf") or die "Can't open '$vars_vcf': $!" ; 
 open(OUTG,">$gatk_vcf_filter");
 open(OUTV,">$vars_vcf_filter"); 
-open(INSG,"<$gatk_snv_vcf");
-open(INSV,"<$vars_snv_vcf");
+open(INSG,"<$gatk_snv_vcf") or die "Can't open '$gatk_snv_vcf': $!";
+open(INSV,"<$vars_snv_vcf") or die "Can't open '$vars_snv_vcf': $!";
 open(OUTSG,">$gatk_snv_vcf_filter"); 
 open(OUTSV,">$vars_snv_vcf_filter");
 

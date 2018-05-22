@@ -36,10 +36,10 @@ docker:
     mv /mnt/data/input/*.gatk.* /mnt/data/input/gatk/ &&
     mv /mnt/data/input/*.varscan.* /mnt/data/input/varscan/ &&
     mv /mnt/data/input/pindel.* /mnt/data/input/pindel/ &&
-    cd /root/ &&
+    cd /usr/ &&
     wget https://raw.githubusercontent.com/ding-lab/RegulatoryGermline/master/variantcalling/filter_gatk_varscan.cloud.pl &&
     perl filter_gatk_varscan.cloud.pl /mnt/data/input ${id} ${passvalue} &&
-    java -Xms256m -Xmx512m -jar GenomeAnalysisTK.jar -T CombineVariants -R /mnt/data/input/GRCh37-lite.fa -O /mnt/data/output/${id}.merged.vcf --variant:gsnp /mnt/data/input/gatk/${id}.${passvalue}.gatk.snp.filtered.vcf --variant:gindel /mnt/data/input/gatk/${id}.${passvalue}.gatk.indel.filtered.vcf --variant:vsnp /mnt/data/input/varscan/${id}.${passvalue}.varscan.snp.filtered.vcf --variant:vindel /mnt/data/input/varscan/${id}.${passvalue}.varscan.indel.filtered.vcf --variant:pindel /mnt/data/input/pindel/pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel
+    java -Xms256m -Xmx512m -jar GenomeAnalysisTK.jar -T CombineVariants -R /mnt/data/input/GRCh37-lite.fa -o /mnt/data/output/${id}.merged.vcf --variant:gsnp /mnt/data/input/gatk/${id}.${passvalue}.gatk.snp.filtered.vcf --variant:gindel /mnt/data/input/gatk/${id}.${passvalue}.gatk.indel.filtered.vcf --variant:vsnp /mnt/data/input/varscan/${id}.${passvalue}.varscan.snp.filtered.vcf --variant:vindel /mnt/data/input/varscan/${id}.${passvalue}.varscan.indel.filtered.vcf --variant:pindel /mnt/data/input/pindel/pindel.out.raw.CvgVafStrand_pass.Homopolymer_pass.vcf -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel
 
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
@@ -51,6 +51,11 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: faifile
+  description: Cloud Storage path or pattern to input files
+  localCopy:
+    path: input/
+    disk: datadisk
+- name: dictfile
   description: Cloud Storage path or pattern to input files
   localCopy:
     path: input/
