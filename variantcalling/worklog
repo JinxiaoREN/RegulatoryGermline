@@ -1,14 +1,16 @@
-Running [operations/ELvI8qC4LBjavof0n97s2yYg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EJXO8qC4LBjHpsf8mZyquooBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/EOXT8qC4LBjX3sCbyPaykgEg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EN_Z8qC4LBjeiobbq77mxUkg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EJvf8qC4LBiH-PqKxqmVp44BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/EMHk8qC4LBiS__TZ1baa6BUg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EKrq8qC4LBjqmIjO_4Snn2Ug6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EMbx8qC4LBi97PLE_6jyxEUg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EKaf86C4LBifj8-EoJKNloIBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/ENak86C4LBi356aUuobl7wMg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EKKr86C4LBijnorF-6GN_fEBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
-Running [operations/ENWw86C4LBi7prCX0LyTojYg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EPO186C4LBiKjY3i9M6NzAwg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
-Running [operations/EPe786C4LBi84OvLk4Lii68BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash ~/job/cloud/gcloud_command.LowPass.merge.sh
+Running [operations/EKfonsW4LBiZy5_HlNPPm0Ag6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EO3tnsW4LBix7rD34_2w17kBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EObznsW4LBjN7sCt8uDJks4BIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EKv5nsW4LBi4kPHL3rm5kpABIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EI3_nsW4LBiVjvvVkpa26uwBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EOWEn8W4LBizrpTzhoyy1JkBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EJ2Kn8W4LBiCv7W507LdzHog6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/ENSPn8W4LBjchu3lzrWH1lgg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+wliang@wliang-germline-noncoding:~/RegulatoryGermline/variantcalling$ bash ~/job/cloud/gcloud_command.HighPass.merge.sh
+Running [operations/EPDZn8W4LBjblZTx0fjkvT8g6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EOffn8W4LBjDxuet6IPX6jQg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EN7ln8W4LBintoGdupugwUIg6MzJ98QYKg9wcm9kdWN0aW9uUXVldWU].
+Running [operations/EPvrn8W4LBi-8bTpoIf0mpsBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EPHyn8W4LBiH8fXJnoKBiqIBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
+Running [operations/EJD5n8W4LBiNtsvmtpSNm9oBIOjMyffEGCoPcHJvZHVjdGlvblF1ZXVl].
