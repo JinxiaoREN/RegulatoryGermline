@@ -1,1 +1,0 @@
-docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf.gz /data/TCGA-44-4112-10A-01D-A46W-08.merged.vcf.gz -o /data/test -r /data/GRCh37-lite.fa
