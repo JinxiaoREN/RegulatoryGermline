@@ -1,0 +1,58 @@
+## Raw output
+#docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.merged.vcf /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf -o /data/raw -r /data/GRCh37-lite.fa
+      type  total.truth  total.query       tp      fp      fn  unk  ambi    recall  recall_lower  recall_upper   recall2  precision  precision_lower  precision_upper  na  ambiguous  fp.region.size        fp.rate
+0   indels       598227       978442   538576  439866   59651    0     0  0.900287      0.899526      0.901044  0.900287   0.550442         0.549457         0.551428   0          0         6034669   72889.830412
+1     SNVs      3917484      3875497  3656793  218704  260691    0     0  0.933454      0.933207      0.933701  0.933454   0.943567         0.943337         0.943797   0          0         6034669   36241.258634
+5  records      4529419      4848482  4195369  653113  334050    0     0  0.926249      0.926008      0.926489  0.926249   0.865295         0.864991         0.865599   0          0         6034669  108226.814097
+6     MNPs         1294            0        0       0    1294    0     0  0.000000      0.000000      0.002847  0.000000   0.000000         0.000000         1.000000 NaN        NaN         6034669       0.000000
+7   others        12530         4647        0    4647   12530    0     0  0.000000      0.000000      0.000294  0.000000   0.000000         0.000000         0.000794   0          0         6034669     770.050520
+
+
+## bcftools norm
+#bcftools norm -f GRCh37-lite.fa TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf -O z > TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf.gz
+#bcftools norm -f GRCh37-lite.fa TCGA-44-4112-10A-01D-A46W-08.merged.vcf -O z > TCGA-44-4112-10A-01D-A46W-08.merged.vcf.gz
+#docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.merged.vcf.gz /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf.gz -o /data/norm -r /data/GRCh37-lite.fa
+
+      type  total.truth  total.query       tp      fp      fn  unk  ambi    recall  recall_lower  recall_upper   recall2  precision  precision_lower  precision_upper  na  ambiguous  fp.region.size        fp.rate
+0   indels       598227       978442   538602  439840   59625    0     0  0.900330      0.899569      0.901088  0.900330   0.550469         0.549483         0.551455   0          0         6034669   72885.521973
+1     SNVs      3917484      3875497  3656793  218704  260691    0     0  0.933454      0.933207      0.933701  0.933454   0.943567         0.943337         0.943797   0          0         6034669   36241.258634
+5  records      4529419      4848482  4195395  653087  334024    0     0  0.926255      0.926014      0.926495  0.926255   0.865301         0.864997         0.865604   0          0         6034669  108222.505659
+6     MNPs         1294            0        0       0    1294    0     0  0.000000      0.000000      0.002847  0.000000   0.000000         0.000000         1.000000 NaN        NaN         6034669       0.000000
+7   others        12530         4647        0    4647   12530    0     0  0.000000      0.000000      0.000294  0.000000   0.000000         0.000000         0.000794   0          0         6034669     770.05052
+
+
+## no RefCall
+#bcftools view TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.vcf.gz -e '%FILTER="RefCall"' -o TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.vcf.gz -O z
+#docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.merged.vcf.gz /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.vcf.gz -o /data/norefcall -r /data/GRCh37-lite.fa
+
+      type  total.truth  total.query       tp      fp      fn  unk  ambi    recall  recall_lower  recall_upper   recall2  precision  precision_lower  precision_upper  na  ambiguous  fp.region.size        fp.rate
+0   indels       598227       978442   538602  439840   59625    0     0  0.900330      0.899569      0.901088  0.900330   0.550469         0.549483         0.551455   0          0         6034669   72885.521973
+1     SNVs      3917484      3875497  3656793  218704  260691    0     0  0.933454      0.933207      0.933701  0.933454   0.943567         0.943337         0.943797   0          0         6034669   36241.258634
+5  records      4529419      4848482  4195395  653087  334024    0     0  0.926255      0.926014      0.926495  0.926255   0.865301         0.864997         0.865604   0          0         6034669  108222.505659
+6     MNPs         1294            0        0       0    1294    0     0  0.000000      0.000000      0.002847  0.000000   0.000000         0.000000         1.000000 NaN        NaN         6034669       0.000000
+7   others        12530         4647        0    4647   12530    0     0  0.000000      0.000000      0.000294  0.000000   0.000000         0.000000         0.000794   0          0         6034669     770.050520
+
+
+
+## AD 5 fileter
+#python2.7 filter_VCF_AD.py TCGA-44-4112-10A-01D-A46W-08.merged.vcf.gz 5 > TCGA-44-4112-10A-01D-A46W-08.merged.AD5.vcf
+#docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.merged.AD5.vcf /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.vcf.gz -o /data/ad5 -r /data/GRCh37-lite.fa
+
+      type  total.truth  total.query       tp      fp      fn  unk  ambi    recall  recall_lower  recall_upper   recall2  precision  precision_lower  precision_upper  na  ambiguous  fp.region.size        fp.rate
+0   indels       555989       978442   502247  476195   53742    0     0  0.903340      0.902561      0.904114  0.903340   0.513313         0.512323         0.514303   0          0         6034669   78909.878901
+1     SNVs      3781602      3875497  3544040  331457  237562    0     0  0.937180      0.936935      0.937424  0.937180   0.914474         0.914195         0.914752   0          0         6034669   54925.464843
+5  records      4350395      4848482  4046287  802195  304108    0     0  0.930096      0.929857      0.930336  0.930096   0.834547         0.834216         0.834878   0          0         6034669  132931.068796
+6     MNPs         1144            0        0       0    1144    0     0  0.000000      0.000000      0.003219  0.000000   0.000000         0.000000         1.000000 NaN        NaN         6034669       0.000000
+7   others        11660         4647        0    4647   11660    0     0  0.000000      0.000000      0.000316  0.000000   0.000000         0.000000         0.000794   0          0         6034669     770.050520
+
+
+## Both AD 5 filter
+# bcftools view TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.vcf.gz -e 'FORMAT/AD[0:0] < 5' -o TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.AD5.vcf.gz -O z
+# docker run -it -v `pwd`:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/TCGA-44-4112-10A-01D-A46W-08.merged.AD5.vcf /data/TCGA-44-4112-10A-01D-A46W-08.HighPass.deepvariant.noRefCall.AD5.vcf.gz -o /data/bothad5 -r /data/GRCh37-lite.fa
+
+      type  total.truth  total.query       tp      fp       fn  unk  ambi    recall  recall_lower  recall_upper   recall2  precision  precision_lower  precision_upper  na  ambiguous  fp.region.size       fp.rate
+0   indels       555989       550572   264575  285997   291414    0     0  0.475864      0.474551      0.477177  0.475864   0.480546         0.479226         0.481866   0          0         6034669  47392.325909
+1     SNVs      3781602      2248465  2048879  199586  1732723    0     0  0.541802      0.541300      0.542304  0.541802   0.911235         0.910862         0.911606   0          0         6034669  33073.230694
+5  records      4350395      2797795  2313454  484341  2036941    0     0  0.531780      0.531311      0.532249  0.531780   0.826885         0.826441         0.827328   0          0         6034669  80259.745812
+6     MNPs         1144            0        0       0     1144    0     0  0.000000      0.000000      0.003219  0.000000   0.000000         0.000000         1.000000 NaN        NaN         6034669      0.000000
+7   others        11660         1643        0    1643    11660    0     0  0.000000      0.000000      0.000316  0.000000   0.000000         0.000000         0.002243   0          0         6034669    272.260169
