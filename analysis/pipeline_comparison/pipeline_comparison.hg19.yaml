@@ -36,8 +36,8 @@ docker:
     wget https://raw.githubusercontent.com/ding-lab/RegulatoryGermline/master/analysis/pipeline_comparison/filter_VCF_AD.py &&
     bcftools norm -f /mnt/data/input/Homo_sapiens_assembly19.fasta /mnt/data/input/${id}.merged.vcf -O z > /mnt/data/input/${id}.merged.vcf.gz &&
     python2.7 filter_VCF_AD.py /mnt/data/input/${id}.merged.vcf.gz 5 > /mnt/data/input/${id}.merged.AD5.vcf && 
-    bgzip -c /mnt/data/input/${id}.merged.AD5.vcf > /mnt/data/input/${id}.merged.AD5.vcf.gz &&
-    tabix -p vcf /mnt/data/input/${id}.merged.AD5.vcf.gz
+    bgzip -c /mnt/data/input/${id}.merged.AD5.vcf > /mnt/data/output/${id}.merged.AD5.vcf.gz &&
+    tabix -p vcf /mnt/data/output/${id}.merged.AD5.vcf.gz
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").

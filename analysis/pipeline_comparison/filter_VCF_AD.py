@@ -85,6 +85,8 @@ def main():
                     else:
                         if int(genotypes) < AD_thres:
                             nonpass_AD = True
+                        elif genotypes == ".":
+                            nonpass_AD = True
                 else:
                     if int(genotype) < AD_thres:
                         nonpass_AD = True
