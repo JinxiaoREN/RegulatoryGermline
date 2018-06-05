@@ -32,7 +32,7 @@ docker:
   cmd: >
     mkdir /mnt/data/output && 
     find /mnt/data/input &&
-    docker run -it -v /mnt/data/input:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/i${id}.merged.AD5.vcf.gz /data/${id}.HighPass.deepvariant.noRefCall.AD5.vcf.gz -r /data/GRCh37-lite.fa -o /mnt/data/output/${id}
+    docker run -it -v /mnt/data/input:/data pkrusche/hap.py /opt/hap.py/bin/som.py /data/i${id}.merged.AD5.vcf.gz /data/${id}.${passvalue}.deepvariant.noRefCall.AD5.vcf.gz -r /data/Homo_sapiens_assembly19.fasta -o /mnt/data/output/${id}
 # The Pipelines API currently supports GCS paths, along with patterns (globs),
 # but it doesn't directly support a list of files being passed as a single input
 # parameter ("gs://bucket/foo.bam gs://bucket/bar.bam").
@@ -58,6 +58,8 @@ inputParameters:
     path: input/
     disk: datadisk
 - name: id
+  description: File names
+- name: passvalue
   description: File names
 
 # By specifying an outputParameter, we instruct the pipelines API to
