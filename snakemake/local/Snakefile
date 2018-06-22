@@ -33,5 +33,13 @@ rule align_all_chr:
     input: expand("gatk.snp.chr{ix}.vcf", ix=CHR)
 
 
+
+def resolve_raw(wildcards):
+    df[sample == wildcards.ix]['path']
+
+rule test:
+    input: raw=resolve_raw
+    output: 'path_{ix}.out'
+
 rule all:
     input: expand('gatk.snp.chr{ix}.vcf', ix=CHR), expand('gatk.indel.chr{ix}.vcf', ix=CHR)
