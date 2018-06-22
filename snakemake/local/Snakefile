@@ -1,3 +1,5 @@
+#snakemake -n all
+
 GENOME_FA = "/diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa"
 BAM = "/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam"
 INTERVALPREFIX = "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr"
@@ -9,7 +11,7 @@ rule gatk_haplotypecaller:
     input: 
         genome_fa = GENOME_FA,
         bam = BAM,
-        interval = f"{INTERVALPREFIX}{ix}.list"
+        interval = f"{INTERVALPREFIX}{{ix}}.list"
     output: "gatk.raw.chr{ix}.vcf"
     shell: "gatk HaplotypeCaller -R {input.genome_fa} -I {input.bam} -L {input.interval} -O {output} --standard-min-confidence-threshold-for-calling 30.0"
 
@@ -23,9 +25,13 @@ rule gatk_selectvariant_snp:
 rule gatk_selectvariant_indel:
     input:
         genome_fa = GENOME_FA,
-        input_vcf = "gatk.raw.vcf"
-    output: "gatk.indel.vcf"
+        input_vcf = "gatk.raw.chr{ix}.vcf"
+    output: "gatk.indel.chr{ix}.vcf"
     shell: "gatk SelectVariants -R {input.genome_fa} -V {input.input_vcf} -O {output} -select-type INDEL"
 
 rule align_all_chr:
-    input: expand("gatk.snp.chr{{ix}}.vcf", ix=CHR)
+    input: expand("gatk.snp.chr{ix}.vcf", ix=CHR)
+
+
+rule all:
+    input: expand('gatk.snp.chr{ix}.vcf', ix=CHR), expand('gatk.indel.chr{ix}.vcf', ix=CHR)

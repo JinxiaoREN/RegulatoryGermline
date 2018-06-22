@@ -1,0 +1,4 @@
+gatk_haplotypecaller
+gatk_selectvariant_snp
+gatk_selectvariant_indel
+align_all_chr
