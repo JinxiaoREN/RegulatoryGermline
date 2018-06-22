@@ -1,3 +1,0 @@
-WildcardError in line 19 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
-No values given for wildcard 'is'.
-  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile", line 19, in <module>
