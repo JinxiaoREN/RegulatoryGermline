@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	gatk_haplotypecaller
+	1	gatk_selectvariant_snp
+	2
+
+rule gatk_haplotypecaller:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr1.list
+    output: gatk.raw.vcf
+    jobid: 1
+
+gatk HaplotypeCaller -R /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -I /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam-L /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr1.list -O gatk.raw.vcf --standard-min-confidence-threshold-for-calling 30.0
+    Error in rule gatk_haplotypecaller:
+        jobid: 1
+        output: gatk.raw.vcf
+
+RuleException:
+CalledProcessError in line 14 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  gatk HaplotypeCaller -R /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -I /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam-L /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr1.list -O gatk.raw.vcf --standard-min-confidence-threshold-for-calling 30.0 ' returned non-zero exit status 1.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile", line 14, in __rule_gatk_haplotypecaller
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/.snakemake/log/2018-06-21T162422.020124.snakemake.log

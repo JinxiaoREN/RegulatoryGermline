@@ -1,0 +1,3 @@
+NameError in line 5 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
+name 'X' is not defined
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile", line 5, in <module>
