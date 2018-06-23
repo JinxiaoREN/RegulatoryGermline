@@ -1,0 +1,13 @@
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	1	samtools_mpileup
+	1
+
+rule samtools_mpileup:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
+    output: samtools.chrY.bam
+    jobid: 0
+
+RuleException in line 48 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
+'InputFiles' object has no attribute 'BAM'

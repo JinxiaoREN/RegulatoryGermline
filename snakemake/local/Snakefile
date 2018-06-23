@@ -36,13 +36,84 @@ rule gatk_selectvariant_indel:
 #    input: raw=resolve_raw
 #    output: 'path_{ix}.out'
 
-#rule all:
-#    input: expand('gatk.snp.chr{ix}.vcf', ix=CHR), expand('gatk.indel.chr{ix}.vcf', ix=CHR)
 VAR=["snp", "indel"]
-rule merge_vcf:
+rule gatk_merge_vcf:
     input: calls= expand('gatk.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
     output: "gatk.{var}.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
-rule all:
-    input: "gatk.snp.vcf", "gatk.indel.vcf"
+#rule gatk:
+#    input: "gatk.snp.vcf", "gatk.indel.vcf"
+
+rule varscan_mpileup2snp:
+    input:
+         genome_fa = GENOME_FA,
+         bam = BAM
+    output:"varscan.snp.chr{ix}.vcf"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{{ix}} {input.bam} | awk NR==6 | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+
+rule varscan_mpileup2indel:
+    input:
+         genome_fa = GENOME_FA,
+         bam = BAM
+    output:"varscan.indel.chr{ix}.vcf"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{{ix}} {input.bam} | awk NR==6 | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+
+rule varscan_merge_vcf:
+     input: calls= expand('varscan.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
+     output: "varscan.{var}.vcf"
+     wrapper: "0.26.0/bio/bcftools/concat"
+
+#rule varscan:
+#     input: "varscan.snp.vcf", "varscan.indel.vcf"
+
+pindel_types = ["D", "INV", "TD", "SI"]
+
+with open("pindel_config.txt", "w"):
+    print (BAM)
+
+rule pindel_call:
+    input:
+        ref = GENOME_FA,
+        samples = BAM,
+        config= "pindel_config.txt"
+    output:
+        expand("pindel/all_{type}_chr{{ix}}", type=pindel_types)
+    params:
+        extra="-x 4 -w 0.1 -a 1 -m 3 -v 50 -d 30 -B 0 -A 0 -M 3 -e 0.01 -u 0.02 -r -t -J -c {{ix}}"
+    log:
+        "logs/pindel_chr{{ix}}.log"
+    threads: 4
+    wrapper: "0.26.0/bio/pindel/call"
+
+#rule pindel_all_chr:
+#    input: expand("pindel/all_{type}_chr{ix}.vcf", type=pindel_types, ix=CHR)
+
+rule pindel2vcf:
+    input:
+        ref= GENOME_FA,
+        pindel="pindel/all_{type}_chr{ix}"
+    output:
+        "pindel/all_{type}_chr{{ix}}.vcf"
+    params:
+        refname="hg37",
+        refdate="20170110",
+        extra=""
+    log:
+        "logs/pindel/pindel2vcf.{type}.chr{{ix}}.log"
+    wrapper:
+        "0.26.0/bio/pindel/pindel2vcf"
+
+#rule pindel_merge_vcf:
+#    input: calls = expand("pindel/all_{{type}}_chr{ix}.vcf", ix=CHR)
+#    output: "pindel/all.{type}.vcf"
+#    wrapper: "0.26.0/bio/bcftools/concat"
+
+#rule pindel:
+#    input: calls = expand("pindel/all.{type}.vcf", type=pindel_types)
+#    output: "pindel/all.vcf"
+#    wrapper: "0.26.0/bio/bcftools/concat"
+
+
+rule all_tools:
+    input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf", expand("pindel/all_{type}_chr{ix}.vcf", type=pindel_types, ix=CHR)

@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	24	samtools_mpileup_indel
+	24	samtools_mpileup_snp
+	1	varscan
+	2	varscan_merge_vcf
+	51
+
+rule samtools_mpileup_indel:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
+    output: varscan.indel.chr7.vcf
+    jobid: 11
+    wildcards: ix=7
+
+RuleException in line 55 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
+NameError: The name 'ix' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}
