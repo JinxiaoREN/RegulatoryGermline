@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 73 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
-Missing input files for rule pindel:
-pindel_config.txt
