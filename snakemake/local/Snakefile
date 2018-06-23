@@ -3,7 +3,7 @@
 GENOME_FA = "/diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa"
 BAM = "/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam"
 INTERVALPREFIX = "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr"
-CHR=[str(i) for i in range (1,22)]
+CHR=[str(i) for i in range (1,23)]
 CHR.append("X")
 CHR.append("Y")
 
@@ -29,17 +29,20 @@ rule gatk_selectvariant_indel:
     output: "gatk.indel.chr{ix}.vcf"
     shell: "gatk SelectVariants -R {input.genome_fa} -V {input.input_vcf} -O {output} -select-type INDEL"
 
-rule align_all_chr:
-    input: expand("gatk.snp.chr{ix}.vcf", ix=CHR)
+#def resolve_raw(wildcards):
+#    df[sample == wildcards.ix]['path']
 
+#rule test:
+#    input: raw=resolve_raw
+#    output: 'path_{ix}.out'
 
-
-def resolve_raw(wildcards):
-    df[sample == wildcards.ix]['path']
-
-rule test:
-    input: raw=resolve_raw
-    output: 'path_{ix}.out'
+#rule all:
+#    input: expand('gatk.snp.chr{ix}.vcf', ix=CHR), expand('gatk.indel.chr{ix}.vcf', ix=CHR)
+VAR=["snp", "indel"]
+rule merge_vcf:
+    input: calls= expand('gatk.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
+    output: "gatk.{var}.vcf"
+    wrapper: "0.26.0/bio/bcftools/concat"
 
 rule all:
-    input: expand('gatk.snp.chr{ix}.vcf', ix=CHR), expand('gatk.indel.chr{ix}.vcf', ix=CHR)
+    input: "gatk.snp.vcf", "gatk.indel.vcf"
