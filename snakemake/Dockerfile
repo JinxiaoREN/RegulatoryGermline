@@ -8,7 +8,7 @@ MAINTAINER Wen-Wei Liang <liang.w@wustl.edu>
 
 USER root
 
-RUN conda install python=3.6 git pindel varscan samtools gatk4 snakemake
+RUN conda install python=3.6 pindel varscan samtools gatk4 snakemake
 WORKDIR /home/biodocker
 RUN git clone https://github.com/ding-lab/germlinewrapper.git
 

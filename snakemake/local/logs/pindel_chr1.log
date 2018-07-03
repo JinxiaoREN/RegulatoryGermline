@@ -4984,8 +4984,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2203
 Number of problematic reads in current window:            	4444, + 3233 - 1211
-Number of split-reads where the close end could be mapped:	2203, + 1624 - 578
-Percentage of problematic reads with close end mapped:    	+ 50.23% - 47.73%
+Number of split-reads where the close end could be mapped:	2203, + 1625 - 578
+Percentage of problematic reads with close end mapped:    	+ 50.26% - 47.73%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2203
@@ -5855,8 +5855,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 5569
 Number of problematic reads in current window:            	8709, + 5980 - 2729
-Number of split-reads where the close end could be mapped:	5569, + 3765 - 1803
-Percentage of problematic reads with close end mapped:    	+ 62.96% - 66.07%
+Number of split-reads where the close end could be mapped:	5569, + 3765 - 1804
+Percentage of problematic reads with close end mapped:    	+ 62.96% - 66.10%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	5569
@@ -5943,8 +5943,8 @@ external BD events: 0 Added BreakDancer-like events: 1
 Insertsize in config: 500
 The number of one end mapped read: 12614
 Number of problematic reads in current window:            	20650, + 12822 - 7828
-Number of split-reads where the close end could be mapped:	12614, + 7828 - 4785
-Percentage of problematic reads with close end mapped:    	+ 61.05% - 61.13%
+Number of split-reads where the close end could be mapped:	12614, + 7829 - 4785
+Percentage of problematic reads with close end mapped:    	+ 61.06% - 61.13%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	12614
@@ -7509,8 +7509,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 4178
 Number of problematic reads in current window:            	6529, + 3959 - 2570
-Number of split-reads where the close end could be mapped:	4178, + 2428 - 1749
-Percentage of problematic reads with close end mapped:    	+ 61.33% - 68.05%
+Number of split-reads where the close end could be mapped:	4178, + 2428 - 1750
+Percentage of problematic reads with close end mapped:    	+ 61.33% - 68.09%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	4178
@@ -7770,8 +7770,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2136
 Number of problematic reads in current window:            	4428, + 3286 - 1142
-Number of split-reads where the close end could be mapped:	2136, + 1637 - 498
-Percentage of problematic reads with close end mapped:    	+ 49.82% - 43.61%
+Number of split-reads where the close end could be mapped:	2136, + 1638 - 498
+Percentage of problematic reads with close end mapped:    	+ 49.85% - 43.61%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2136
@@ -8205,8 +8205,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2349
 Number of problematic reads in current window:            	4870, + 3542 - 1328
-Number of split-reads where the close end could be mapped:	2349, + 1718 - 630
-Percentage of problematic reads with close end mapped:    	+ 48.50% - 47.44%
+Number of split-reads where the close end could be mapped:	2349, + 1719 - 630
+Percentage of problematic reads with close end mapped:    	+ 48.53% - 47.44%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2349
@@ -9249,8 +9249,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2128
 Number of problematic reads in current window:            	4876, + 3470 - 1406
-Number of split-reads where the close end could be mapped:	2128, + 1511 - 616
-Percentage of problematic reads with close end mapped:    	+ 43.54% - 43.81%
+Number of split-reads where the close end could be mapped:	2128, + 1512 - 616
+Percentage of problematic reads with close end mapped:    	+ 43.57% - 43.81%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2128
@@ -9423,8 +9423,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1555
 Number of problematic reads in current window:            	3396, + 2489 - 907
-Number of split-reads where the close end could be mapped:	1555, + 1139 - 415
-Percentage of problematic reads with close end mapped:    	+ 45.76% - 45.76%
+Number of split-reads where the close end could be mapped:	1555, + 1140 - 415
+Percentage of problematic reads with close end mapped:    	+ 45.80% - 45.76%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1555
@@ -10291,8 +10291,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2427
 Number of problematic reads in current window:            	5298, + 3808 - 1490
-Number of split-reads where the close end could be mapped:	2427, + 1821 - 605
-Percentage of problematic reads with close end mapped:    	+ 47.82% - 40.60%
+Number of split-reads where the close end could be mapped:	2427, + 1822 - 605
+Percentage of problematic reads with close end mapped:    	+ 47.85% - 40.60%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2427
@@ -10631,7 +10631,7 @@ sorting read-pair finished.
 Modify RP complete.
 adding BD from RP.
 adding 22 24273542	24274644	+	1102		22 24310848	24311399	-	551	 to BD events. 37306 Support: 8
-adding 22 24195344	24196446	+	1102		22 24198040	24198591	-	551	 to BD events. 2696 Support: 10
+adding 22 24195344	24196446	+	1102		22 24198040	24198591	-	551	 to BD events. 2696 Support: 8
 modify and summarize interchr RP.
 adding BD from interChr RP.
 summarize BP as BD complete. Now start sorting BD...
@@ -10728,8 +10728,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1634
 Number of problematic reads in current window:            	3670, + 2670 - 1000
-Number of split-reads where the close end could be mapped:	1634, + 1192 - 441
-Percentage of problematic reads with close end mapped:    	+ 44.64% - 44.10%
+Number of split-reads where the close end could be mapped:	1634, + 1193 - 441
+Percentage of problematic reads with close end mapped:    	+ 44.68% - 44.10%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1634
@@ -10900,8 +10900,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1934
 Number of problematic reads in current window:            	3911, + 2913 - 998
-Number of split-reads where the close end could be mapped:	1934, + 1473 - 460
-Percentage of problematic reads with close end mapped:    	+ 50.57% - 46.09%
+Number of split-reads where the close end could be mapped:	1934, + 1474 - 460
+Percentage of problematic reads with close end mapped:    	+ 50.60% - 46.09%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1934
@@ -11335,8 +11335,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2075
 Number of problematic reads in current window:            	4355, + 3085 - 1270
-Number of split-reads where the close end could be mapped:	2075, + 1475 - 599
-Percentage of problematic reads with close end mapped:    	+ 47.81% - 47.17%
+Number of split-reads where the close end could be mapped:	2075, + 1476 - 599
+Percentage of problematic reads with close end mapped:    	+ 47.84% - 47.17%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2075
@@ -11596,8 +11596,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1974
 Number of problematic reads in current window:            	3845, + 2799 - 1046
-Number of split-reads where the close end could be mapped:	1974, + 1460 - 513
-Percentage of problematic reads with close end mapped:    	+ 52.16% - 49.04%
+Number of split-reads where the close end could be mapped:	1974, + 1461 - 513
+Percentage of problematic reads with close end mapped:    	+ 52.20% - 49.04%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1974
@@ -11771,8 +11771,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1729
 Number of problematic reads in current window:            	3681, + 2718 - 963
-Number of split-reads where the close end could be mapped:	1729, + 1296 - 432
-Percentage of problematic reads with close end mapped:    	+ 47.68% - 44.86%
+Number of split-reads where the close end could be mapped:	1729, + 1297 - 432
+Percentage of problematic reads with close end mapped:    	+ 47.72% - 44.86%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1729
@@ -12293,8 +12293,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1605
 Number of problematic reads in current window:            	3607, + 2665 - 942
-Number of split-reads where the close end could be mapped:	1605, + 1181 - 423
-Percentage of problematic reads with close end mapped:    	+ 44.32% - 44.90%
+Number of split-reads where the close end could be mapped:	1605, + 1182 - 423
+Percentage of problematic reads with close end mapped:    	+ 44.35% - 44.90%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1605
@@ -12380,8 +12380,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1683
 Number of problematic reads in current window:            	4000, + 2931 - 1069
-Number of split-reads where the close end could be mapped:	1683, + 1243 - 439
-Percentage of problematic reads with close end mapped:    	+ 42.41% - 41.07%
+Number of split-reads where the close end could be mapped:	1683, + 1244 - 439
+Percentage of problematic reads with close end mapped:    	+ 42.44% - 41.07%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1683
@@ -14901,8 +14901,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1710
 Number of problematic reads in current window:            	3365, + 2463 - 902
-Number of split-reads where the close end could be mapped:	1710, + 1286 - 423
-Percentage of problematic reads with close end mapped:    	+ 52.21% - 46.90%
+Number of split-reads where the close end could be mapped:	1710, + 1287 - 423
+Percentage of problematic reads with close end mapped:    	+ 52.25% - 46.90%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1710
@@ -15249,8 +15249,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1777
 Number of problematic reads in current window:            	3979, + 2921 - 1058
-Number of split-reads where the close end could be mapped:	1777, + 1302 - 474
-Percentage of problematic reads with close end mapped:    	+ 44.57% - 44.80%
+Number of split-reads where the close end could be mapped:	1777, + 1302 - 475
+Percentage of problematic reads with close end mapped:    	+ 44.57% - 44.90%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1777
@@ -15858,8 +15858,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1734
 Number of problematic reads in current window:            	3565, + 2594 - 971
-Number of split-reads where the close end could be mapped:	1734, + 1286 - 447
-Percentage of problematic reads with close end mapped:    	+ 49.58% - 46.04%
+Number of split-reads where the close end could be mapped:	1734, + 1287 - 447
+Percentage of problematic reads with close end mapped:    	+ 49.61% - 46.04%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1734
@@ -16206,8 +16206,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2078
 Number of problematic reads in current window:            	4452, + 3292 - 1160
-Number of split-reads where the close end could be mapped:	2078, + 1552 - 525
-Percentage of problematic reads with close end mapped:    	+ 47.14% - 45.26%
+Number of split-reads where the close end could be mapped:	2078, + 1553 - 525
+Percentage of problematic reads with close end mapped:    	+ 47.17% - 45.26%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2078
@@ -16467,8 +16467,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2003
 Number of problematic reads in current window:            	4206, + 3102 - 1104
-Number of split-reads where the close end could be mapped:	2003, + 1504 - 498
-Percentage of problematic reads with close end mapped:    	+ 48.48% - 45.11%
+Number of split-reads where the close end could be mapped:	2003, + 1505 - 498
+Percentage of problematic reads with close end mapped:    	+ 48.52% - 45.11%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2003
@@ -16989,8 +16989,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1937
 Number of problematic reads in current window:            	4247, + 3136 - 1111
-Number of split-reads where the close end could be mapped:	1937, + 1469 - 467
-Percentage of problematic reads with close end mapped:    	+ 46.84% - 42.03%
+Number of split-reads where the close end could be mapped:	1937, + 1470 - 467
+Percentage of problematic reads with close end mapped:    	+ 46.88% - 42.03%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1937
@@ -18207,8 +18207,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1601
 Number of problematic reads in current window:            	3479, + 2565 - 914
-Number of split-reads where the close end could be mapped:	1601, + 1193 - 407
-Percentage of problematic reads with close end mapped:    	+ 46.51% - 44.53%
+Number of split-reads where the close end could be mapped:	1601, + 1194 - 407
+Percentage of problematic reads with close end mapped:    	+ 46.55% - 44.53%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1601
@@ -18294,8 +18294,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1293
 Number of problematic reads in current window:            	2875, + 2088 - 787
-Number of split-reads where the close end could be mapped:	1293, + 935 - 357
-Percentage of problematic reads with close end mapped:    	+ 44.78% - 45.36%
+Number of split-reads where the close end could be mapped:	1293, + 935 - 358
+Percentage of problematic reads with close end mapped:    	+ 44.78% - 45.49%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1293
@@ -18816,8 +18816,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1037
 Number of problematic reads in current window:            	2239, + 1613 - 626
-Number of split-reads where the close end could be mapped:	1037, + 753 - 283
-Percentage of problematic reads with close end mapped:    	+ 46.68% - 45.21%
+Number of split-reads where the close end could be mapped:	1037, + 754 - 283
+Percentage of problematic reads with close end mapped:    	+ 46.75% - 45.21%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1037
@@ -20121,8 +20121,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 938
 Number of problematic reads in current window:            	2294, + 1652 - 642
-Number of split-reads where the close end could be mapped:	938, + 679 - 258
-Percentage of problematic reads with close end mapped:    	+ 41.10% - 40.19%
+Number of split-reads where the close end could be mapped:	938, + 680 - 258
+Percentage of problematic reads with close end mapped:    	+ 41.16% - 40.19%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	938
@@ -20730,8 +20730,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2428
 Number of problematic reads in current window:            	5256, + 3847 - 1409
-Number of split-reads where the close end could be mapped:	2428, + 1825 - 602
-Percentage of problematic reads with close end mapped:    	+ 47.44% - 42.73%
+Number of split-reads where the close end could be mapped:	2428, + 1826 - 602
+Percentage of problematic reads with close end mapped:    	+ 47.47% - 42.73%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2428
@@ -21426,8 +21426,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1839
 Number of problematic reads in current window:            	4159, + 3069 - 1090
-Number of split-reads where the close end could be mapped:	1839, + 1383 - 455
-Percentage of problematic reads with close end mapped:    	+ 45.06% - 41.74%
+Number of split-reads where the close end could be mapped:	1839, + 1384 - 455
+Percentage of problematic reads with close end mapped:    	+ 45.10% - 41.74%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1839
@@ -21513,8 +21513,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2048
 Number of problematic reads in current window:            	4409, + 3276 - 1133
-Number of split-reads where the close end could be mapped:	2048, + 1550 - 497
-Percentage of problematic reads with close end mapped:    	+ 47.31% - 43.87%
+Number of split-reads where the close end could be mapped:	2048, + 1551 - 497
+Percentage of problematic reads with close end mapped:    	+ 47.34% - 43.87%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2048
@@ -21687,8 +21687,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2299
 Number of problematic reads in current window:            	4578, + 3363 - 1215
-Number of split-reads where the close end could be mapped:	2299, + 1720 - 578
-Percentage of problematic reads with close end mapped:    	+ 51.14% - 47.57%
+Number of split-reads where the close end could be mapped:	2299, + 1721 - 578
+Percentage of problematic reads with close end mapped:    	+ 51.17% - 47.57%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2299
@@ -22121,8 +22121,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2179
 Number of problematic reads in current window:            	4619, + 3440 - 1179
-Number of split-reads where the close end could be mapped:	2179, + 1624 - 554
-Percentage of problematic reads with close end mapped:    	+ 47.21% - 46.99%
+Number of split-reads where the close end could be mapped:	2179, + 1625 - 554
+Percentage of problematic reads with close end mapped:    	+ 47.24% - 46.99%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2179
@@ -22554,8 +22554,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2301
 Number of problematic reads in current window:            	4464, + 3312 - 1152
-Number of split-reads where the close end could be mapped:	2301, + 1726 - 573
-Percentage of problematic reads with close end mapped:    	+ 52.11% - 49.74%
+Number of split-reads where the close end could be mapped:	2301, + 1728 - 573
+Percentage of problematic reads with close end mapped:    	+ 52.17% - 49.74%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2301
@@ -22641,8 +22641,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2299
 Number of problematic reads in current window:            	4521, + 3322 - 1199
-Number of split-reads where the close end could be mapped:	2299, + 1751 - 547
-Percentage of problematic reads with close end mapped:    	+ 52.71% - 45.62%
+Number of split-reads where the close end could be mapped:	2299, + 1752 - 547
+Percentage of problematic reads with close end mapped:    	+ 52.74% - 45.62%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2299
@@ -22813,8 +22813,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2222
 Number of problematic reads in current window:            	4355, + 3210 - 1145
-Number of split-reads where the close end could be mapped:	2222, + 1670 - 551
-Percentage of problematic reads with close end mapped:    	+ 52.02% - 48.12%
+Number of split-reads where the close end could be mapped:	2222, + 1671 - 551
+Percentage of problematic reads with close end mapped:    	+ 52.06% - 48.12%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2222
@@ -23161,8 +23161,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2359
 Number of problematic reads in current window:            	5053, + 3715 - 1338
-Number of split-reads where the close end could be mapped:	2359, + 1778 - 580
-Percentage of problematic reads with close end mapped:    	+ 47.86% - 43.35%
+Number of split-reads where the close end could be mapped:	2359, + 1779 - 580
+Percentage of problematic reads with close end mapped:    	+ 47.89% - 43.35%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2359
@@ -23857,8 +23857,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2476
 Number of problematic reads in current window:            	4978, + 3632 - 1346
-Number of split-reads where the close end could be mapped:	2476, + 1833 - 642
-Percentage of problematic reads with close end mapped:    	+ 50.47% - 47.70%
+Number of split-reads where the close end could be mapped:	2476, + 1834 - 642
+Percentage of problematic reads with close end mapped:    	+ 50.50% - 47.70%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2476
@@ -24118,8 +24118,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2645
 Number of problematic reads in current window:            	5443, + 4002 - 1441
-Number of split-reads where the close end could be mapped:	2645, + 2005 - 637
-Percentage of problematic reads with close end mapped:    	+ 50.10% - 44.21%
+Number of split-reads where the close end could be mapped:	2645, + 2007 - 638
+Percentage of problematic reads with close end mapped:    	+ 50.15% - 44.27%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2645
@@ -24899,8 +24899,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1329
 Number of problematic reads in current window:            	2910, + 2122 - 788
-Number of split-reads where the close end could be mapped:	1329, + 982 - 346
-Percentage of problematic reads with close end mapped:    	+ 46.28% - 43.91%
+Number of split-reads where the close end could be mapped:	1329, + 983 - 346
+Percentage of problematic reads with close end mapped:    	+ 46.32% - 43.91%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1329
@@ -25682,8 +25682,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1359
 Number of problematic reads in current window:            	2802, + 2049 - 753
-Number of split-reads where the close end could be mapped:	1359, + 1021 - 337
-Percentage of problematic reads with close end mapped:    	+ 49.83% - 44.75%
+Number of split-reads where the close end could be mapped:	1359, + 1022 - 337
+Percentage of problematic reads with close end mapped:    	+ 49.88% - 44.75%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1359
@@ -25943,8 +25943,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2371
 Number of problematic reads in current window:            	5138, + 3776 - 1362
-Number of split-reads where the close end could be mapped:	2371, + 1791 - 579
-Percentage of problematic reads with close end mapped:    	+ 47.43% - 42.51%
+Number of split-reads where the close end could be mapped:	2371, + 1792 - 579
+Percentage of problematic reads with close end mapped:    	+ 47.46% - 42.51%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2371
@@ -26465,8 +26465,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1674
 Number of problematic reads in current window:            	3498, + 2548 - 950
-Number of split-reads where the close end could be mapped:	1674, + 1233 - 440
-Percentage of problematic reads with close end mapped:    	+ 48.39% - 46.32%
+Number of split-reads where the close end could be mapped:	1674, + 1234 - 440
+Percentage of problematic reads with close end mapped:    	+ 48.43% - 46.32%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1674
@@ -27161,8 +27161,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1666
 Number of problematic reads in current window:            	3340, + 2443 - 897
-Number of split-reads where the close end could be mapped:	1666, + 1233 - 432
-Percentage of problematic reads with close end mapped:    	+ 50.47% - 48.16%
+Number of split-reads where the close end could be mapped:	1666, + 1234 - 432
+Percentage of problematic reads with close end mapped:    	+ 50.51% - 48.16%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1666
@@ -27335,8 +27335,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2228
 Number of problematic reads in current window:            	4384, + 3196 - 1188
-Number of split-reads where the close end could be mapped:	2228, + 1655 - 572
-Percentage of problematic reads with close end mapped:    	+ 51.78% - 48.15%
+Number of split-reads where the close end could be mapped:	2228, + 1656 - 572
+Percentage of problematic reads with close end mapped:    	+ 51.81% - 48.15%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2228
@@ -27596,8 +27596,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1823
 Number of problematic reads in current window:            	4118, + 3036 - 1082
-Number of split-reads where the close end could be mapped:	1823, + 1346 - 476
-Percentage of problematic reads with close end mapped:    	+ 44.33% - 43.99%
+Number of split-reads where the close end could be mapped:	1823, + 1347 - 476
+Percentage of problematic reads with close end mapped:    	+ 44.37% - 43.99%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1823
@@ -28377,8 +28377,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2097
 Number of problematic reads in current window:            	4564, + 3348 - 1216
-Number of split-reads where the close end could be mapped:	2097, + 1581 - 515
-Percentage of problematic reads with close end mapped:    	+ 47.22% - 42.35%
+Number of split-reads where the close end could be mapped:	2097, + 1582 - 515
+Percentage of problematic reads with close end mapped:    	+ 47.25% - 42.35%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2097
@@ -28464,8 +28464,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2313
 Number of problematic reads in current window:            	5332, + 3985 - 1347
-Number of split-reads where the close end could be mapped:	2313, + 1757 - 555
-Percentage of problematic reads with close end mapped:    	+ 44.09% - 41.20%
+Number of split-reads where the close end could be mapped:	2313, + 1757 - 556
+Percentage of problematic reads with close end mapped:    	+ 44.09% - 41.28%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2313
@@ -28725,8 +28725,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2361
 Number of problematic reads in current window:            	4951, + 3639 - 1312
-Number of split-reads where the close end could be mapped:	2361, + 1746 - 614
-Percentage of problematic reads with close end mapped:    	+ 47.98% - 46.80%
+Number of split-reads where the close end could be mapped:	2361, + 1747 - 614
+Percentage of problematic reads with close end mapped:    	+ 48.01% - 46.80%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2361
@@ -29247,8 +29247,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2901
 Number of problematic reads in current window:            	6138, + 4571 - 1567
-Number of split-reads where the close end could be mapped:	2901, + 2176 - 724
-Percentage of problematic reads with close end mapped:    	+ 47.60% - 46.20%
+Number of split-reads where the close end could be mapped:	2901, + 2177 - 724
+Percentage of problematic reads with close end mapped:    	+ 47.63% - 46.20%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2901
@@ -29334,8 +29334,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1707
 Number of problematic reads in current window:            	4317, + 3160 - 1157
-Number of split-reads where the close end could be mapped:	1707, + 1240 - 466
-Percentage of problematic reads with close end mapped:    	+ 39.24% - 40.28%
+Number of split-reads where the close end could be mapped:	1707, + 1241 - 466
+Percentage of problematic reads with close end mapped:    	+ 39.27% - 40.28%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1707
@@ -30030,8 +30030,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2142
 Number of problematic reads in current window:            	4529, + 3382 - 1147
-Number of split-reads where the close end could be mapped:	2142, + 1645 - 496
-Percentage of problematic reads with close end mapped:    	+ 48.64% - 43.24%
+Number of split-reads where the close end could be mapped:	2142, + 1646 - 496
+Percentage of problematic reads with close end mapped:    	+ 48.67% - 43.24%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2142
@@ -30117,8 +30117,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2025
 Number of problematic reads in current window:            	4281, + 3167 - 1114
-Number of split-reads where the close end could be mapped:	2025, + 1521 - 503
-Percentage of problematic reads with close end mapped:    	+ 48.03% - 45.15%
+Number of split-reads where the close end could be mapped:	2025, + 1522 - 503
+Percentage of problematic reads with close end mapped:    	+ 48.06% - 45.15%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2025
@@ -30378,8 +30378,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2278
 Number of problematic reads in current window:            	4677, + 3449 - 1228
-Number of split-reads where the close end could be mapped:	2278, + 1730 - 547
-Percentage of problematic reads with close end mapped:    	+ 50.16% - 44.54%
+Number of split-reads where the close end could be mapped:	2278, + 1731 - 547
+Percentage of problematic reads with close end mapped:    	+ 50.19% - 44.54%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2278
@@ -30726,8 +30726,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1660
 Number of problematic reads in current window:            	3820, + 2815 - 1005
-Number of split-reads where the close end could be mapped:	1660, + 1261 - 398
-Percentage of problematic reads with close end mapped:    	+ 44.80% - 39.60%
+Number of split-reads where the close end could be mapped:	1660, + 1262 - 398
+Percentage of problematic reads with close end mapped:    	+ 44.83% - 39.60%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1660
@@ -30813,8 +30813,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1719
 Number of problematic reads in current window:            	3674, + 2716 - 958
-Number of split-reads where the close end could be mapped:	1719, + 1283 - 435
-Percentage of problematic reads with close end mapped:    	+ 47.24% - 45.41%
+Number of split-reads where the close end could be mapped:	1719, + 1284 - 435
+Percentage of problematic reads with close end mapped:    	+ 47.28% - 45.41%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1719
@@ -30900,8 +30900,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2193
 Number of problematic reads in current window:            	4785, + 3532 - 1253
-Number of split-reads where the close end could be mapped:	2193, + 1638 - 554
-Percentage of problematic reads with close end mapped:    	+ 46.38% - 44.21%
+Number of split-reads where the close end could be mapped:	2193, + 1638 - 555
+Percentage of problematic reads with close end mapped:    	+ 46.38% - 44.29%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2193
@@ -31770,8 +31770,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 1577
 Number of problematic reads in current window:            	3607, + 2689 - 918
-Number of split-reads where the close end could be mapped:	1577, + 1166 - 409
-Percentage of problematic reads with close end mapped:    	+ 43.36% - 44.55%
+Number of split-reads where the close end could be mapped:	1577, + 1168 - 409
+Percentage of problematic reads with close end mapped:    	+ 43.44% - 44.55%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	1577
@@ -32203,8 +32203,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2651
 Number of problematic reads in current window:            	6182, + 4590 - 1592
-Number of split-reads where the close end could be mapped:	2651, + 2002 - 648
-Percentage of problematic reads with close end mapped:    	+ 43.62% - 40.70%
+Number of split-reads where the close end could be mapped:	2651, + 2003 - 648
+Percentage of problematic reads with close end mapped:    	+ 43.64% - 40.70%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2651
@@ -33073,8 +33073,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2347
 Number of problematic reads in current window:            	5112, + 3804 - 1308
-Number of split-reads where the close end could be mapped:	2347, + 1777 - 569
-Percentage of problematic reads with close end mapped:    	+ 46.71% - 43.50%
+Number of split-reads where the close end could be mapped:	2347, + 1777 - 570
+Percentage of problematic reads with close end mapped:    	+ 46.71% - 43.58%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2347
@@ -33595,8 +33595,8 @@ external BD events: 0 Added BreakDancer-like events: 0
 Insertsize in config: 500
 The number of one end mapped read: 2403
 Number of problematic reads in current window:            	5147, + 3826 - 1321
-Number of split-reads where the close end could be mapped:	2403, + 1856 - 546
-Percentage of problematic reads with close end mapped:    	+ 48.51% - 41.33%
+Number of split-reads where the close end could be mapped:	2403, + 1857 - 546
+Percentage of problematic reads with close end mapped:    	+ 48.54% - 41.33%
 BAM file index	0
 Bam file name	/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
 Number of split-reads so far	2403
@@ -34215,8 +34215,8 @@ declaring g_RefCoverageRegion for 1 samples and 14567 positions.
 no reads 
 InterChromosome_SR.size(): 0
 PreviousChrName: 
-Initializing pindel 89 seconds.
+Initializing pindel 87 seconds.
 Loading chromosomes 0 seconds.
-Reading in reads + matching close ends 143 seconds.
-Searching far ends 155 seconds.
+Reading in reads + matching close ends 209 seconds.
+Searching far ends 445 seconds.
 Searching and reporting variations 10 seconds.
