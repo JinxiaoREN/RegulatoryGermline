@@ -76,7 +76,7 @@ rule pindel_call:
         samples = BAM,
         config= "pindel_config.txt"
     output:
-        expand("pindel/chr1_{type}", type=pindel_types)
+        expand("pindel/chr{ix}_{type}", ix=CHR, type=pindel_types)
     params:
         prefix="pindel/chr1",
         extra="-x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 22"
@@ -86,25 +86,25 @@ rule pindel_call:
     wrapper: "0.26.0/bio/pindel/call"
 
 rule generate_pindel_filter_config:
-    input: expand("pindel/chr1_{type}", type=pindel_types)
-    output: "pindel.out.chr1.raw"
+    input: expand("pindel/chr{ix}_{type}", ix=CHR, type=pindel_types)
+    output: expand("pindel.out.chr{ix}.raw", ix=CHR)
     shell: "ls {input} > outlist; cat `for i in outlist; do cat ${{i}}; done` | grep ChrID > {output}"
 
 with open("pindel.input.37.txt", "w") as f:
     f.write ( \
          f"pindel.filter.pindel2vcf = /opt/conda/bin/pindel2vcf\n \
-         pindel.filter.variants_file = pindel.out.chr1.raw\n \
-         pindel.filter.REF = /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa\n \
-         pindel.filter.date = 000000\n \
-         pindel.filter.heterozyg_min_var_allele_freq = 0.2\n \
-         pindel.filter.homozyg_min_var_allele_freq = 0.8\n \
-         pindel.filter.mode = germline\n \
-         pindel.filter.apply_filter = true\n \
-         pindel.filter.germline.min_coverages = 10\n \
-         pindel.filter.germline.min_var_allele_freq = 0.20\n \
-         pindel.filter.germline.require_balanced_reads = 'true'\n \
-         pindel.filter.germline.remove_complex_indels = 'true'\n \
-         pindel.filter.germline.max_num_homopolymer_repeat_units = 6")
+pindel.filter.variants_file = pindel.out.chr1.raw\n \
+pindel.filter.REF = /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa\n \
+pindel.filter.date = 000000\n \
+pindel.filter.heterozyg_min_var_allele_freq = 0.2\n \
+pindel.filter.homozyg_min_var_allele_freq = 0.8\n \
+pindel.filter.mode = germline\n \
+pindel.filter.apply_filter = true\n \
+pindel.filter.germline.min_coverages = 10\n \
+pindel.filter.germline.min_var_allele_freq = 0.20\n \
+pindel.filter.germline.require_balanced_reads = 'true'\n \
+pindel.filter.germline.remove_complex_indels = 'true'\n \
+pindel.filter.germline.max_num_homopolymer_repeat_units = 6")
 
 
 
