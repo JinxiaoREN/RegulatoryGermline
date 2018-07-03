@@ -1,4 +1,4 @@
-# Call germline variang
+# Call germline variant
 
 GENOME_FA = "/diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa"
 BAM = "/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam"
@@ -89,6 +89,24 @@ rule generate_pindel_filter_config:
     input: expand("pindel/chr1_{type}", type=pindel_types)
     output: "pindel.out.chr1.raw"
     shell: "ls {input} > outlist; cat `for i in outlist; do cat ${{i}}; done` | grep ChrID > {output}"
+
+with open("pindel.input.37.txt", "w") as f:
+    f.write ( \
+         f"pindel.filter.pindel2vcf = /opt/conda/bin/pindel2vcf\n \
+         pindel.filter.variants_file = pindel.out.chr1.raw\n \
+         pindel.filter.REF = /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa\n \
+         pindel.filter.date = 000000\n \
+         pindel.filter.heterozyg_min_var_allele_freq = 0.2\n \
+         pindel.filter.homozyg_min_var_allele_freq = 0.8\n \
+         pindel.filter.mode = germline\n \
+         pindel.filter.apply_filter = true\n \
+         pindel.filter.germline.min_coverages = 10\n \
+         pindel.filter.germline.min_var_allele_freq = 0.20\n \
+         pindel.filter.germline.require_balanced_reads = "true"\n \
+         pindel.filter.germline.remove_complex_indels = "true"\n \
+         pindel.filter.germline.max_num_homopolymer_repeat_units = 6")
+
+
 
 rule filter_pindel:
     input: "pindel.out.chr1.raw"
