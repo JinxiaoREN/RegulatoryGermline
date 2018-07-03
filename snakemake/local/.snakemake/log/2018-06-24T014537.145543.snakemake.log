@@ -1,0 +1,49 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	filter_pindel
+	1	generate_pindel_filter_config
+	1	pindel_call
+	3
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr1_D, pindel/chr1_INV, pindel/chr1_TD, pindel/chr1_SI
+    log: logs/pindel_chr1.log
+    jobid: 2
+    threads: 4
+
+/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/python /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/.snakemake/scripts/2_0pxy21.wrapper.py
+Finished job 2.
+1 of 3 steps (33%) done
+
+rule generate_pindel_filter_config:
+    input: pindel/chr1_D, pindel/chr1_INV, pindel/chr1_TD, pindel/chr1_SI
+    output: pindel.out.chr1.raw
+    jobid: 1
+
+ls pindel/chr1_D pindel/chr1_INV pindel/chr1_TD pindel/chr1_SI > outlist; cat `for i in outlist; do cat ${i}; done` | grep ChrID > pindel.out.chr1.raw
+Finished job 1.
+2 of 3 steps (67%) done
+
+rule filter_pindel:
+    input: pindel.out.chr1.raw
+    output: pindel.chr1.vcf
+    jobid: 0
+
+perl pindel_filter.v0.5.pl pindel.input.37.txt
+    Error in rule filter_pindel:
+        jobid: 0
+        output: pindel.chr1.vcf
+
+RuleException:
+CalledProcessError in line 96 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  perl pindel_filter.v0.5.pl pindel.input.37.txt ' returned non-zero exit status 2.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/Snakefile", line 96, in __rule_filter_pindel
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/.snakemake/log/2018-06-24T014537.145543.snakemake.log

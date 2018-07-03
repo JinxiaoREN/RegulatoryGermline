@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	pindel_call
+	1
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr22_D, pindel/chr22_INV, pindel/chr22_TD, pindel/chr22_SI
+    log: logs/pindel_chr22.log
+    jobid: 0
+    threads: 4
+
+/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/python /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/pindel/.snakemake/scripts/o56ghqrb.wrapper.py
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/pindel/.snakemake/log/2018-06-23T151049.371505.snakemake.log
