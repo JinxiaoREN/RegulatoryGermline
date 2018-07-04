@@ -1,5 +1,5 @@
 pindel.filter.pindel2vcf = /diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/pindel2vcf
-pindel.filter.variants_file = pindel/chr22/pindel.out.chr22.raw
+pindel.filter.variants_file = pindel/chrX/pindel.out.chrX.raw
 pindel.filter.REF = /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa
 pindel.filter.date = 000000
 pindel.filter.heterozyg_min_var_allele_freq = 0.2

@@ -1,3 +1,0 @@
-FileNotFoundError in line 94 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
-[Errno 2] No such file or directory: 'pindel/chr22/pindel.input.chr22.37.txt'
-  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 94, in <module>
