@@ -1,0 +1,92 @@
+####################################################################################################
+0	INV 2918	NT 0:0 "":""	ChrID 6	BP 10893362	10896281	BP_range 10893362	10896281	Supports 3	2	+ 3	2	- 0	0	S1 4	SUM_MS 87	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 2 4 3 2 0 0
+CTCACCGCAACCTCCGTCCTAGGTTCAAGCGATTCTCCTGCCTCAGCCTTCcaagtagctgggattacaggcatgtgccaccactgcccagctaatttttgt
+           CTCCGTCCTAGGTTCAAGCGATTCTCCTGCCTCAGCCTTCCAAGTAGCTGG                                       	+	10893225	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2103:10010:192767#0/1
+                                 TCTCCTGCCTCAGCCTTCCAAGTAGCTGGGATTACAGGCATGCGCCACCAC                 	+	10893344	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1103:16936:172071#0/1
+                                 TCTCCTGCCTCAGCCTTCCAAGTAGCTGGGATTACAGGCATGCGCCACCAC                 	+	10893344	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1103:16936:172071#0/1
+----------------------------------------------------------------------------------------------------
+accaacaatacaaaattagccagacgtggtggcgcatgcctgtaatacttgGGAAACTGAGGCAGGAGAATTGCTTAAGCTGGAGGTTGTGGTGAGCCAAGA
+####################################################################################################
+1	INV 528	NT 0:0 "":""	ChrID 6	BP 27550297	27550826	BP_range 27550297	27550826	Supports 5	3	+ 5	3	- 0	0	S1 6	SUM_MS 94	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 4 0 5 3 0 0
+CGTGATCTGCCCGCCTCGGCCTTCCAAAGTGCTGGGATTACAGGCGTGAGCtaccgcgcctggccctggttttgtcatttgaagtcggattccggcgtattg
+                         AAAGTGCTGGGATTACAGGCGTGAGCTACCGCGCCTGGCCCTGGTTTTGTC	+	27550648	11	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1103:11614:163088#0/2
+                       CCAAAGTGCTGGGATTACAGGCGTGAGCTACCGCGCCTGGCCCTGGTTTTG	+	27550802	18	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:6631:80550#0/1
+                       CCAAAGTGCTGGGATTACAGGCGTGAGCTACCGCGCCTGGCCCTGGTTTTG	+	27550484	18	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2101:19205:199261#0/1
+                       CCAAAGTGCTGGGATTACAGGCGTGAGCTACCGCGCCTGGCCCTGGTTTTG	+	27550802	18	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:6631:80550#0/1
+                                               GAGCTACCGCGCCTGGCCCTGGTTTTGTCATTTGAAGTCGGATTCCGGCGT	+	27550649	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1102:19606:86188#0/1
+----------------------------------------------------------------------------------------------------
+gatatgtggaaaactgattaataatctatacaggacaggccgggcgcggtgGTCACGCCTGTAATCCCAGCACTTTGGGAGGCAGAGGTGTGCGGATCCTCT
+####################################################################################################
+2	INV 8206	NT 0:0 "":""	ChrID 6	BP 44717670	44725877	BP_range 44717670	44725877	Supports 3	2	+ 2	1	- 1	1	S1 6	SUM_MS 41	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 2 1 2 1 1 1
+AAATATATATGCACCCAATACAGGAGCACCCAGATTCATAAAGCAAGTCCTgagtgacctaaaaagagacttagactaccacacattaataatgggagactt
+                       GAGCACCCAGATTCATAAAGCAAGTCCTGAGTGACCTACAAAGAGACTGAG                           	+	44717642	6	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:9378:33340#0/2
+                       GAGCACCCAGATTCATAAAGCAAGTCCTGAGTGACCTACAAAGAGACTGAG                           	+	44717642	6	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:9378:33340#0/2
+----------------------------------------------------------------------------------------------------
+aagtctctcattattattgtgtaggaatctaaatctctttgtggatctctaAGGACTTGCTTTATGAATCTGGGTGCTCCTGTATTGGGTGCATATATATTT
+                            CTCAGTCTCTTTGTAGGTCACTCAGGACTTGCTTTATGAATCTGGGTGCTC	-	44717869	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:9378:33340#0/2
+####################################################################################################
+3	INV 15357	NT 0:0 "":""	ChrID 6	BP 57400423	57415781	BP_range 57400423	57415781	Supports 3	2	+ 3	2	- 0	0	S1 4	SUM_MS 41	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 9 7 3 2 0 0
+GGTGGGTCGCCTGAGGTCAGGAGTTCAAGACCAGCCTGGCCAACATGGTGAaactctgtctctactaaaaatacaaaaattagccagacgtggtggtgcaca
+                                    TGGCCAACATGGTGAAACCCCATCTCTACTAAAAATACAAAAATTAGCCAG              	+	57400408	6	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:13273:100586#0/1
+                                    TGGCCAACATGGTGAAACCCCATCTCTACTAAAAATACAAAAATTAGCCAG              	+	57400408	6	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2205:13273:100586#0/1
+                 CAGGAGTTCGAGACCAGCCTGGCCAACATGGGGAAACTCTGTCTCTACTAA	+	57415544	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2107:9929:95217#0/2
+----------------------------------------------------------------------------------------------------
+cacctgccaccacgcccagttaatttttgtagttttagtagagacggtattTTACTATGTTGGCCAGGCTTGTCTGGAACTCCTGACCTCAAGTGATCCACC
+####################################################################################################
+4	INV 6996	NT 0:0 "":""	ChrID 6	BP 57417105	57424086	BP_range 57417105	57424086	Supports 3	2	+ 2	1	- 1	1	S1 6	SUM_MS 29	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 6 6 2 1 1 1
+CAGAAGCAATTGCAACAAAAGCAAATATTGGCAAATGGGATCTAATTAAACtaaagagcttctgcacagcaaaagaaactaccatcagagtgaacaggcaac
+                     AACAAAAGCACATATTGGCAAATGGGATCTAATTAAACTTAAGAGCTTCTG                             	+	57417067	0	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2201:12131:63214#0/1
+                     AACAAAAGCACATATTGGCAAATGGGATCTAATTAAACTTAAGAGCTTCTG                             	+	57417067	0	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2201:12131:63214#0/1
+----------------------------------------------------------------------------------------------------
+gttgtctgtttactctgttgatagtttcttttgctgtgaagaagctcttaaGTTTAATGAGATCCCATTTGTCAATTATGGCTTTTGTTGCCATTGCTTTTG
+                          AGTTCTTTAGTTTAATTAGATCCCATTTGTCAATTTTGGCTTTTGTTGCCA	-	57417261	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2208:5715:68879#0/1
+####################################################################################################
+5	INV 354	NT 0:0 "":""	ChrID 6	BP 58318893	58319248	BP_range 58318893	58319248	Supports 3	2	+ 3	2	- 0	0	S1 4	SUM_MS 15	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 2 0 3 2 0 0
+GGACGGGGTTTCACTGTGTTAGCCAGGATGGTCTCGAGCTCCTGACCTCGTgatccgcccacctcagtctcccaaagtgctgggattataggcatgagccac
+        TTTCACTGTGTTAGCCAGGATGGAGTCGAGCTCCTGACCTCGTGATCCGCC	+	58318850	0	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2103:1828:130645#0/1
+        TTTCACTGTGTTAGCCAGGATGGAGTCGAGCTCCTGACCTCGTGATCCGCC	+	58318850	0	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2103:1828:130645#0/1
+                                          TGACCTCATGATCCGCCCACCTCAGTCTCCCAAAGTGCTGGGATTATAGGC	+	58319070	15	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1204:5501:20612#0/2
+----------------------------------------------------------------------------------------------------
+gtggctcacgcctgtaatcccagcactttgggaggccgaggctggcggatcCCTTAAGGTCAGGAGTTCGAGACCAGACTGGCCAATATGGTGAAACCCCAT
+####################################################################################################
+6	INV 233	NT 0:0 "":""	ChrID 6	BP 72423369	72423597	BP_range 72423369	72423597	Supports 4	3	+ 0	0	- 4	3	S1 5	SUM_MS 136	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 1 1 0 0 4 3
+CTCTTAAATTCTTTTCCTTTTTTTGACTACGTATCTCTGTGAAATCAGATTtcttatttcatttaaaaataataaaccccattacatattaacataaatttc
+----------------------------------------------------------------------------------------------------
+cctaaattaaatcgaatatgatatgttgttttggttaaagtacatgaagaaAATCTGTATGTGAAACCACTAACTTTTAATCTCTACTATGGTATATATTCA
+                                        AAGAAAATCTGTATGTGAAACCACTAACTTTTAATCTCTACTATGGTATAT	-	72423409	37	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2107:14272:43220#0/2
+         CGAATATGATATGTTGTTTTGGTTAAAGTACATGAAGAAAATCTGTATGTG	-	72423409	37	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2107:14272:43220#0/1
+         CGAATATGATATGTTGTTTTGGTTAAAGTACATGAAGAAAATCTGTATGTG                                         	-	72423642	25	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2107:14272:43220#0/1
+         CGAATATGATATGTTGTTTTGGTTAAAGTACATGAAGAAAATCTGTATGTG	-	72423409	37	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2107:14272:43220#0/1
+####################################################################################################
+7	INV 1889	NT 0:0 "":""	ChrID 6	BP 97684822	97686712	BP_range 97684822	97686712	Supports 3	3	+ 3	3	- 0	0	S1 4	SUM_MS 81	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 7 0 3 3 0 0
+AGCCGAAATAGCGCTACTGCACTCCAGCCTGGGTGACAGAGCGAGACTCCGtctcaaaaaaagagctaaaagagtgaatgtgcaccttattagtccaattaa
+                                    CAGAGCGAGACTCCGTCTCAAAAAAAGAGCTAAAAGAGTGAATGTGCACCT	+	97686398	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1106:14139:188217#0/2
+                  GCACTCCAGCCTGGGCGACAGAGCGAGACTCCGTCTCAAAAAAAGAGCTAA	+	97686459	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1201:4055:160862#0/2
+               ACTGCACTCCAGCCTGGGCGACAGAGCGAGACTCCGTCTCAAAAAAAGAGC	+	97686428	23	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2106:12680:168163#0/1
+----------------------------------------------------------------------------------------------------
+aatatgcctgcttctaatctctgctttagtcctttttttttttttctgaggCGGAGTGCTCTGTCGCCTAGCGGAGTGCAGTGAGCCGAGATCGCGCCACTG
+####################################################################################################
+8	INV 11541	NT 0:0 "":""	ChrID 6	BP 102723611	102735147	BP_range 102723611	102735147	Supports 3	2	+ 2	1	- 1	1	S1 6	SUM_MS 73	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 1 2 2 1 1 1
+TTTTAGGTCTAACATTTAAGTCTTTAATCCATCTTGAATTAATTTTTGTATatgatataaggaaggggtccagattcaattttctgcatattgccagccagt
+                      GTCTTTAATCCATCTTGAGTTAATTTTTGTATAAGGTGTAAGGAAGGGAGC	+	102735130	22	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2204:4422:197360#0/1
+                      GTCTTTAATCCATCTTGAGTTAATTTTTGTATAAGGTGTAAGGAAGGGAGC	+	102735130	22	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2204:4422:197360#0/1
+----------------------------------------------------------------------------------------------------
+actggctagccatatgcagaaagctgaaactggatcccttccttacaccttATGCAAAAATTAACTCAAGATGGATTAAAGACTTAGAGGCAGAAATACCAT
+                          GCTCCCTTCCTTACACCTTATACAAAAATTAACTCAAGATGGATTAAAGAC                        	-	102735304	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2204:4422:197360#0/1
+####################################################################################################
+9	INV 4312	NT 0:0 "":""	ChrID 6	BP 103456499	103460812	BP_range 103456499	103460812	Supports 3	2	+ 2	1	- 1	1	S1 6	SUM_MS 47	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 1 5 2 1 1 1
+GTTTATTGCGGCACTATTCTCAATAGCAAAGACTTGGAACTAACCCAAATGctcctcaatgatagactggataaagaaaaggtggcacatgtataccatgga
+                                CTTGGAACCAACCCAAATGTCCATCAATGATAGACTGGATTAAGAAAATGT	+	103460779	9	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2101:16972:37755#0/2
+                                CTTGGAACCAACCCAAATGTCCATCAATGATAGACTGGATTAAGAAAATGT	+	103460779	9	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2101:16972:37755#0/2
+----------------------------------------------------------------------------------------------------
+tccatggtgtatatgtgccacattttcttaatccagtctatcactgatggaCATTTGGGTTGGTTCCATGTCTTTGCTATTGTAAATAGTGCTGCAATAAAC
+                   ACATTTTCTTAATCCAGTCTATCATTGATGGACATTTGGGTTGGTTCCAAG                               	-	103461082	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2101:16972:37755#0/2
+####################################################################################################
+10	INV 4022	NT 0:0 "":""	ChrID 6	BP 160180684	160184707	BP_range 160180684	160184707	Supports 4	2	+ 4	2	- 0	0	S1 5	SUM_MS 116	1	NumSupSamples 1	1	TCGA-73-4677-11A-01D-1203-02 1 3 4 2 0 0
+GGAGGTTGTGGTGAGCCGAGATAGCGCCACTGCACTCCAGCCTGGGTGACAgagagagactccgtctcaaaaaaaaaaaaaaaaaaaaaaaaaaaaggaaaa
+             AGCCGAGATAGTGCCACTGCACTCCAGCCTGGGTGACAGAGCGAGACTCCG                                     	+	160180646	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1103:7535:46058#0/2
+             AGCCGAGATAGTGCCACTGCACTCCAGCCTGGGTGACAGAGCGAGACTCCG                                     	+	160180646	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:1103:7535:46058#0/2
+                                CACTCCAGCCTGGGTGACAGAGCGAGACTCCGTCTCAAAAAAAAAAAAAAA                  	+	160180665	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2202:8571:87679#0/2
+                                CACTCCAGCCTGGGTGACAGAGCGAGACTCCGTCTCAAAAAAAAAAAAAAA                  	+	160180665	29	TCGA-73-4677-11A-01D-1203-02	@HWI-ST590:8:2202:8571:87679#0/2
+----------------------------------------------------------------------------------------------------
+atgaaggaaagaagaggaattttttttttttttttgagacggagctcgctcTGTGGCCCAGGCTGGAGTGCAGTGGCGTGATCTCGGCTCACTGCAAGCTCC

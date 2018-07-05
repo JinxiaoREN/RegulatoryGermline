@@ -4,7 +4,7 @@ import os
 
 GENOME_FA = "/diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa"
 BAM = "/diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam"
-INTERVALPREFIX = "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/reference/interval_chr"
+INTERVALPREFIX = "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/reference/interval_chr"
 CHR=[str(i) for i in range (1,23)]
 CHR.append("X")
 CHR.append("Y")
@@ -42,8 +42,9 @@ rule gatk_selectvariant_indel:
 VAR=["snp", "indel"]
 rule gatk_merge_vcf:
     input: calls= expand('gatk.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
-    output: "gatk.{var}.vcf"
+    output: expand("gatk.{var}.vcf", var=VAR)
     wrapper: "0.26.0/bio/bcftools/concat"
+
 
 ###Run Varscan
 rule varscan_mpileup2snp:
@@ -67,7 +68,7 @@ rule varscan_merge_vcf:
 
 
 ###Run Pindel
-pindel_types = ["D", "INV", "TD", "SI"]
+#pindel_types = ["D", "INV", "TD", "SI"]
 
 with open("pindel_config.txt", "w") as f:
     f.write (f"{BAM}	500	TCGA-73-4677-11A-01D-1203-02")
@@ -76,28 +77,19 @@ rule pindel_call:
     input:
         ref = GENOME_FA,
         samples = BAM,
-        config= "pindel_config.txt"
-    output:
-        expand("pindel/chr{ix}/chr{ix}_{type}", ix=CHR, type=pindel_types)
-    shell: "pindel -x 4 -w 0.1 -B 0 -M 3 -T 4 -c {ix} -J pindel-centromere-exclude.bed -f {input.ref} -i {input.config} -o pindel/chr{ix}/chr{ix}"
-    #params:
-    #    prefix="pindel/chr{{ix}}/chr{{ix}}",
-    #    extra="-x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c {{ix}}"
-    #log:
-    #    "pindel/logs/pindel_chr{{ix}}.log"
-    #threads: 4
-    #wrapper: "0.26.0/bio/pindel/call"
-
-rule generate_pindel_filter_config:
-    input: expand("pindel/chr{ix}/chr{ix}_{type}", ix=CHR, type=pindel_types)
-    output: expand("pindel/chr{ix}/pindel.out.chr{ix}.raw", ix=CHR)
-    shell: "ls {input} > outlist; cat `for i in outlist; do cat ${{i}}; done` | grep ChrID > {output}"
+        config = "pindel_config.txt"
+    output: "pindel/chr{ix}/pindel.out.chr{ix}.raw"
+    params:
+        prefix="pindel/chr{ix}/chr{ix}",
+        extra="-x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c {ix}",
+        chr="{ix}"
+    threads: 4
+    shell: "pindel {params.extra} -T {threads} -f {input.ref} -i {input.config} -o {params.prefix} | cat pindel/chr{params.chr}/chr{params.chr}_D pindel/chr{params.chr}/chr{params.chr}_INV pindel/chr{params.chr}_TD pindel/chr{params.chr}_SI | grep ChrID > {output}"
 
 #Generate the config file for pindel_filter.v0.5.pl
 for ix in CHR:
     filename=f"pindel/chr{ix}/pindel.input.chr{ix}.37.txt"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-    change=f"pindel.filter.variants_file = pindel/chr{ix}/pindel.out.chr{ix}.raw"
     with open(filename, "w") as f:
         f.write ( \
 f"pindel.filter.pindel2vcf = /diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/pindel2vcf\n\
@@ -117,20 +109,16 @@ pindel.filter.germline.max_num_homopolymer_repeat_units = 6")
 
 rule filter_pindel:
     input: "pindel/chr{ix}/pindel.out.chr{ix}.raw"
-    output: expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
-    shell: "perl germlinewrapper/pindel_filter.v0.5.pl pindel/chr{ix}/pindel.input.chr{ix}.37.txt"
+    output: "pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf"
+    params: chr='{ix}'
+    shell: "perl germlinewrapper/pindel_filter.v0.5.pl pindel/chr{params.chr}/pindel.input.chr{params.chr}.37.txt"
 
 
 rule pindel_merge_vcf:
-    input: calls = expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
+    input: expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
     output: "pindel.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
-#rule pindel:
-#    input: calls = expand("pindel/all.{type}.vcf", type=pindel_types)
-#    output: "pindel/all.vcf"
-#    wrapper: "0.26.0/bio/bcftools/concat"
-
 
 rule all_tools:
-    input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf", expand("pindel/all_{type}_chr{ix}.vcf", type=pindel_types, ix=CHR)
+    input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf", "pindel.vcf"
