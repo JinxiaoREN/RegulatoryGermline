@@ -1,3 +1,0 @@
-SyntaxError:
-Not all output, log and benchmark files of rule pindel_call contain the same wildcards. This is crucial though, in order to avoid that two or more jobs write to the same file.
-  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/06_Cloud_Variant_Calling/RegulatoryGermline/snakemake/local/pindel/Snakefile", line 29, in <module>

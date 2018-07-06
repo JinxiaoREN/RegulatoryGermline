@@ -8,6 +8,7 @@ INTERVALPREFIX = "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGe
 CHR=[str(i) for i in range (1,23)]
 CHR.append("X")
 CHR.append("Y")
+SAMPLE = "TCGA-73-4677-11A-01D-1203-02"
 
 ### Run GATK HaplotypeCaller and Select Variant
 rule gatk_haplotypecaller:
@@ -42,7 +43,7 @@ rule gatk_selectvariant_indel:
 VAR=["snp", "indel"]
 rule gatk_merge_vcf:
     input: calls= expand('gatk.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
-    output: expand("gatk.{var}.vcf", var=VAR)
+    output: "gatk.{var}.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
 
@@ -52,20 +53,26 @@ rule varscan_mpileup2snp:
          genome_fa = GENOME_FA,
          bam = BAM
     output:"varscan.snp.chr{ix}.vcf"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{{ix}} {input.bam} | awk NR==6 | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    params: chr="{ix}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk NR==6 | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
 
 rule varscan_mpileup2indel:
     input:
          genome_fa = GENOME_FA,
          bam = BAM
     output:"varscan.indel.chr{ix}.vcf"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{{ix}} {input.bam} | awk NR==6 | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    params: chr="{ix}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk NR==6 | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
 
 rule varscan_merge_vcf:
      input: calls= expand('varscan.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
      output: "varscan.{var}.vcf"
      wrapper: "0.26.0/bio/bcftools/concat"
 
+rule filter_varscan:
+     input: "varscan.{var}.vcf"
+     output: "varscan.{var}.filtered.vcf"
+     
 
 ###Run Pindel
 #pindel_types = ["D", "INV", "TD", "SI"]
@@ -111,14 +118,31 @@ rule filter_pindel:
     input: "pindel/chr{ix}/pindel.out.chr{ix}.raw"
     output: "pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf"
     params: chr='{ix}'
-    shell: "perl germlinewrapper/pindel_filter.v0.5.pl pindel/chr{params.chr}/pindel.input.chr{params.chr}.37.txt"
-
+    shell: "perl scripts/pindel_filter.v0.5.pl pindel/chr{params.chr}/pindel.input.chr{params.chr}.37.txt"
 
 rule pindel_merge_vcf:
-    input: expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
+    input: calls=expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
     output: "pindel.vcf"
-    wrapper: "0.26.0/bio/bcftools/concat"
-
+    wrapper: "0.27.0/bio/bcftools/concat"
 
 rule all_tools:
     input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf", "pindel.vcf"
+
+rule filter:
+    input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf"
+    output: "gatk.snp.filtered.vcf", "gatk.indel.filtered.vcf", "varscan.snp.filtered.vcf", "varscan.indel.filtered.vcf"
+    shell: "perl scripts/filter_gatk_varscan.pl `pwd`"
+
+rule merge_vcf:
+    input: 
+        gsnp = "gatk.snp.filtered.vcf",
+        gindel = "gatk.indel.filtered.vcf",
+        vsnp = "varscan.snp.filtered.vcf", 
+        vindel = "varscan.indel.filtered.vcf",
+        pindel = "pindel.vcf",
+        genome_fa = GENOME_FA
+    output: "merged.vcf"
+    singularity: "docker://broadinstitute/gatk3:3.8-0"
+    shell: "java -Xms256m -Xmx512m -jar GenomeAnalysisTK.jar -T CombineVariants -R {input.genome_fa} -o {output} --variant:gsnp {input.gsnp} --variant:gindel {input.gindel} --variant:vsnp {input.vsnp} --variant:vindel {input.vindel} --variant:pindel {input.pindel} -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel"
+    
+   
