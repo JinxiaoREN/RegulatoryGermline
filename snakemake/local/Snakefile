@@ -40,12 +40,16 @@ rule gatk_selectvariant_indel:
 #    input: raw=resolve_raw
 #    output: 'path_{ix}.out'
 
-VAR=["snp", "indel"]
-rule gatk_merge_vcf:
-    input: calls= expand('gatk.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
-    output: "gatk.{var}.vcf"
+#VAR=["snp", "indel"]
+rule gatk_merge_snp_vcf:
+    input: calls= expand('gatk.snp.chr{ix}.vcf', ix=CHR)
+    output: "gatk.snp.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
+rule gatk_merge_indel_vcf:
+    input: calls= expand('gatk.indel.chr{ix}.vcf', ix=CHR)
+    output: "gatk.indel.vcf"
+    wrapper: "0.26.0/bio/bcftools/concat"
 
 ###Run Varscan
 rule varscan_mpileup2snp:
@@ -54,7 +58,7 @@ rule varscan_mpileup2snp:
          bam = BAM
     output:"varscan.snp.chr{ix}.vcf"
     params: chr="{ix}"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk NR==6 | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk 'NR==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
 
 rule varscan_mpileup2indel:
     input:
@@ -62,17 +66,18 @@ rule varscan_mpileup2indel:
          bam = BAM
     output:"varscan.indel.chr{ix}.vcf"
     params: chr="{ix}"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk NR==6 | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk 'NR==6' | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
 
-rule varscan_merge_vcf:
-     input: calls= expand('varscan.{var}.chr{ix}.vcf', ix=CHR, var=VAR)
-     output: "varscan.{var}.vcf"
-     wrapper: "0.26.0/bio/bcftools/concat"
+rule varscan_merge_snp_vcf:
+    input: calls= expand('varscan.snp.chr{ix}.vcf', ix=CHR)
+    output: "varscan.snp.vcf"
+    wrapper: "0.26.0/bio/bcftools/concat"
 
-rule filter_varscan:
-     input: "varscan.{var}.vcf"
-     output: "varscan.{var}.filtered.vcf"
-     
+rule varscan_merge_indel_vcf:
+    input: calls= expand('varscan.indel.chr{ix}.vcf', ix=CHR)
+    output: "varscan.indel.vcf"
+    wrapper: "0.26.0/bio/bcftools/concat"
+
 
 ###Run Pindel
 #pindel_types = ["D", "INV", "TD", "SI"]
