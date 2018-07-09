@@ -1,0 +1,11 @@
+Building DAG of jobs...
+Pulling singularity image docker://broadinstitute/gatk3:3.8-0.
+WorkflowError:
+Failed to pull singularity image from docker://broadinstitute/gatk3:3.8-0:
+[33mWARNING: pull for Docker Hub is not guaranteed to produce the
+(B[m[33mWARNING: same image on repeated pull. Use Singularity Registry
+(B[m[33mWARNING: (shub://) to pull exactly equivalent images.
+(B[m[31mERROR: You must install squashfs-tools to build images
+(B[m[31mABORT: Aborting with RETVAL=255
+(B[m[31mERROR: pulling container failed!
+(B[m

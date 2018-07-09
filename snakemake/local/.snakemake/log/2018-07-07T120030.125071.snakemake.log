@@ -1,0 +1,535 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	24	filter_pindel
+	24	pindel_call
+	1	pindel_merge_vcf
+	49
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr4/pindel.out.chr4.raw
+    jobid: 42
+    wildcards: ix=4
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 4 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr4/chr4 ; cat pindel/chr4/chr4_D pindel/chr4/chr4_INV pindel/chr4/chr4_TD pindel/chr4/chr4_SI | grep ChrID > pindel/chr4/pindel.out.chr4.raw
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr21/pindel.out.chr21.raw
+    jobid: 44
+    wildcards: ix=21
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 21 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr21/chr21 ; cat pindel/chr21/chr21_D pindel/chr21/chr21_INV pindel/chr21/chr21_TD pindel/chr21/chr21_SI | grep ChrID > pindel/chr21/pindel.out.chr21.raw
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chrY/pindel.out.chrY.raw
+    jobid: 38
+    wildcards: ix=Y
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c Y -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chrY/chrY ; cat pindel/chrY/chrY_D pindel/chrY/chrY_INV pindel/chrY/chrY_TD pindel/chrY/chrY_SI | grep ChrID > pindel/chrY/pindel.out.chrY.raw
+Finished job 38.
+1 of 49 steps (2%) done
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr20/pindel.out.chr20.raw
+    jobid: 25
+    wildcards: ix=20
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 20 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr20/chr20 ; cat pindel/chr20/chr20_D pindel/chr20/chr20_INV pindel/chr20/chr20_TD pindel/chr20/chr20_SI | grep ChrID > pindel/chr20/pindel.out.chr20.raw
+
+rule filter_pindel:
+    input: pindel/chrY/pindel.out.chrY.raw
+    output: pindel/chrY/pindel.out.chrY.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 14
+    wildcards: ix=Y
+
+perl scripts/pindel_filter.v0.5.pl pindel/chrY/pindel.input.chrY.37.txt
+Finished job 14.
+2 of 49 steps (4%) done
+Finished job 44.
+3 of 49 steps (6%) done
+
+rule filter_pindel:
+    input: pindel/chr21/pindel.out.chr21.raw
+    output: pindel/chr21/pindel.out.chr21.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 20
+    wildcards: ix=21
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr21/pindel.input.chr21.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr10/pindel.out.chr10.raw
+    jobid: 39
+    wildcards: ix=10
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 10 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr10/chr10 ; cat pindel/chr10/chr10_D pindel/chr10/chr10_INV pindel/chr10/chr10_TD pindel/chr10/chr10_SI | grep ChrID > pindel/chr10/pindel.out.chr10.raw
+Finished job 20.
+4 of 49 steps (8%) done
+Finished job 25.
+5 of 49 steps (10%) done
+
+rule filter_pindel:
+    input: pindel/chr20/pindel.out.chr20.raw
+    output: pindel/chr20/pindel.out.chr20.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 1
+    wildcards: ix=20
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr20/pindel.input.chr20.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr18/pindel.out.chr18.raw
+    jobid: 43
+    wildcards: ix=18
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 18 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr18/chr18 ; cat pindel/chr18/chr18_D pindel/chr18/chr18_INV pindel/chr18/chr18_TD pindel/chr18/chr18_SI | grep ChrID > pindel/chr18/pindel.out.chr18.raw
+Finished job 1.
+6 of 49 steps (12%) done
+Finished job 39.
+7 of 49 steps (14%) done
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr3/pindel.out.chr3.raw
+    jobid: 31
+    wildcards: ix=3
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 3 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr3/chr3 ; cat pindel/chr3/chr3_D pindel/chr3/chr3_INV pindel/chr3/chr3_TD pindel/chr3/chr3_SI | grep ChrID > pindel/chr3/pindel.out.chr3.raw
+
+rule filter_pindel:
+    input: pindel/chr10/pindel.out.chr10.raw
+    output: pindel/chr10/pindel.out.chr10.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 15
+    wildcards: ix=10
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr10/pindel.input.chr10.37.txt
+Finished job 42.
+8 of 49 steps (16%) done
+
+rule filter_pindel:
+    input: pindel/chr4/pindel.out.chr4.raw
+    output: pindel/chr4/pindel.out.chr4.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 18
+    wildcards: ix=4
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr4/pindel.input.chr4.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr6/pindel.out.chr6.raw
+    jobid: 41
+    wildcards: ix=6
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 6 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr6/chr6 ; cat pindel/chr6/chr6_D pindel/chr6/chr6_INV pindel/chr6/chr6_TD pindel/chr6/chr6_SI | grep ChrID > pindel/chr6/pindel.out.chr6.raw
+Finished job 15.
+9 of 49 steps (18%) done
+Finished job 18.
+10 of 49 steps (20%) done
+Finished job 43.
+11 of 49 steps (22%) done
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr16/pindel.out.chr16.raw
+    jobid: 35
+    wildcards: ix=16
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 16 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr16/chr16 ; cat pindel/chr16/chr16_D pindel/chr16/chr16_INV pindel/chr16/chr16_TD pindel/chr16/chr16_SI | grep ChrID > pindel/chr16/pindel.out.chr16.raw
+
+rule filter_pindel:
+    input: pindel/chr18/pindel.out.chr18.raw
+    output: pindel/chr18/pindel.out.chr18.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 19
+    wildcards: ix=18
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr18/pindel.input.chr18.37.txt
+Finished job 19.
+12 of 49 steps (24%) done
+Finished job 35.
+13 of 49 steps (27%) done
+
+rule filter_pindel:
+    input: pindel/chr16/pindel.out.chr16.raw
+    output: pindel/chr16/pindel.out.chr16.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 11
+    wildcards: ix=16
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr16/pindel.input.chr16.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr14/pindel.out.chr14.raw
+    jobid: 29
+    wildcards: ix=14
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 14 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr14/chr14 ; cat pindel/chr14/chr14_D pindel/chr14/chr14_INV pindel/chr14/chr14_TD pindel/chr14/chr14_SI | grep ChrID > pindel/chr14/pindel.out.chr14.raw
+Finished job 11.
+14 of 49 steps (29%) done
+Finished job 41.
+15 of 49 steps (31%) done
+
+rule filter_pindel:
+    input: pindel/chr6/pindel.out.chr6.raw
+    output: pindel/chr6/pindel.out.chr6.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 17
+    wildcards: ix=6
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr6/pindel.input.chr6.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr2/pindel.out.chr2.raw
+    jobid: 28
+    wildcards: ix=2
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 2 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr2/chr2 ; cat pindel/chr2/chr2_D pindel/chr2/chr2_INV pindel/chr2/chr2_TD pindel/chr2/chr2_SI | grep ChrID > pindel/chr2/pindel.out.chr2.raw
+Finished job 17.
+16 of 49 steps (33%) done
+Finished job 31.
+17 of 49 steps (35%) done
+
+rule filter_pindel:
+    input: pindel/chr3/pindel.out.chr3.raw
+    output: pindel/chr3/pindel.out.chr3.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 7
+    wildcards: ix=3
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr3/pindel.input.chr3.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr5/pindel.out.chr5.raw
+    jobid: 46
+    wildcards: ix=5
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 5 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr5/chr5 ; cat pindel/chr5/chr5_D pindel/chr5/chr5_INV pindel/chr5/chr5_TD pindel/chr5/chr5_SI | grep ChrID > pindel/chr5/pindel.out.chr5.raw
+Finished job 7.
+18 of 49 steps (37%) done
+Finished job 29.
+19 of 49 steps (39%) done
+
+rule filter_pindel:
+    input: pindel/chr14/pindel.out.chr14.raw
+    output: pindel/chr14/pindel.out.chr14.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 5
+    wildcards: ix=14
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr14/pindel.input.chr14.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr9/pindel.out.chr9.raw
+    jobid: 36
+    wildcards: ix=9
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 9 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr9/chr9 ; cat pindel/chr9/chr9_D pindel/chr9/chr9_INV pindel/chr9/chr9_TD pindel/chr9/chr9_SI | grep ChrID > pindel/chr9/pindel.out.chr9.raw
+Finished job 5.
+20 of 49 steps (41%) done
+Finished job 46.
+21 of 49 steps (43%) done
+
+rule filter_pindel:
+    input: pindel/chr5/pindel.out.chr5.raw
+    output: pindel/chr5/pindel.out.chr5.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 22
+    wildcards: ix=5
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr5/pindel.input.chr5.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr12/pindel.out.chr12.raw
+    jobid: 34
+    wildcards: ix=12
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 12 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr12/chr12 ; cat pindel/chr12/chr12_D pindel/chr12/chr12_INV pindel/chr12/chr12_TD pindel/chr12/chr12_SI | grep ChrID > pindel/chr12/pindel.out.chr12.raw
+Finished job 22.
+22 of 49 steps (45%) done
+Finished job 36.
+23 of 49 steps (47%) done
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr19/pindel.out.chr19.raw
+    jobid: 30
+    wildcards: ix=19
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 19 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr19/chr19 ; cat pindel/chr19/chr19_D pindel/chr19/chr19_INV pindel/chr19/chr19_TD pindel/chr19/chr19_SI | grep ChrID > pindel/chr19/pindel.out.chr19.raw
+
+rule filter_pindel:
+    input: pindel/chr9/pindel.out.chr9.raw
+    output: pindel/chr9/pindel.out.chr9.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 12
+    wildcards: ix=9
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr9/pindel.input.chr9.37.txt
+Finished job 12.
+24 of 49 steps (49%) done
+Finished job 28.
+25 of 49 steps (51%) done
+
+rule filter_pindel:
+    input: pindel/chr2/pindel.out.chr2.raw
+    output: pindel/chr2/pindel.out.chr2.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 4
+    wildcards: ix=2
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr2/pindel.input.chr2.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr8/pindel.out.chr8.raw
+    jobid: 40
+    wildcards: ix=8
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 8 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr8/chr8 ; cat pindel/chr8/chr8_D pindel/chr8/chr8_INV pindel/chr8/chr8_TD pindel/chr8/chr8_SI | grep ChrID > pindel/chr8/pindel.out.chr8.raw
+Finished job 4.
+26 of 49 steps (53%) done
+Finished job 30.
+27 of 49 steps (55%) done
+
+rule filter_pindel:
+    input: pindel/chr19/pindel.out.chr19.raw
+    output: pindel/chr19/pindel.out.chr19.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 6
+    wildcards: ix=19
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr19/pindel.input.chr19.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr11/pindel.out.chr11.raw
+    jobid: 45
+    wildcards: ix=11
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 11 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr11/chr11 ; cat pindel/chr11/chr11_D pindel/chr11/chr11_INV pindel/chr11/chr11_TD pindel/chr11/chr11_SI | grep ChrID > pindel/chr11/pindel.out.chr11.raw
+Finished job 6.
+28 of 49 steps (57%) done
+Finished job 34.
+29 of 49 steps (59%) done
+
+rule filter_pindel:
+    input: pindel/chr12/pindel.out.chr12.raw
+    output: pindel/chr12/pindel.out.chr12.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 10
+    wildcards: ix=12
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr12/pindel.input.chr12.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr13/pindel.out.chr13.raw
+    jobid: 48
+    wildcards: ix=13
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 13 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr13/chr13 ; cat pindel/chr13/chr13_D pindel/chr13/chr13_INV pindel/chr13/chr13_TD pindel/chr13/chr13_SI | grep ChrID > pindel/chr13/pindel.out.chr13.raw
+Finished job 10.
+30 of 49 steps (61%) done
+Finished job 40.
+31 of 49 steps (63%) done
+
+rule filter_pindel:
+    input: pindel/chr8/pindel.out.chr8.raw
+    output: pindel/chr8/pindel.out.chr8.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 16
+    wildcards: ix=8
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr8/pindel.input.chr8.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr7/pindel.out.chr7.raw
+    jobid: 33
+    wildcards: ix=7
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 7 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr7/chr7 ; cat pindel/chr7/chr7_D pindel/chr7/chr7_INV pindel/chr7/chr7_TD pindel/chr7/chr7_SI | grep ChrID > pindel/chr7/pindel.out.chr7.raw
+Finished job 16.
+32 of 49 steps (65%) done
+Finished job 48.
+33 of 49 steps (67%) done
+
+rule filter_pindel:
+    input: pindel/chr13/pindel.out.chr13.raw
+    output: pindel/chr13/pindel.out.chr13.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 24
+    wildcards: ix=13
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr13/pindel.input.chr13.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chrX/pindel.out.chrX.raw
+    jobid: 37
+    wildcards: ix=X
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c X -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chrX/chrX ; cat pindel/chrX/chrX_D pindel/chrX/chrX_INV pindel/chrX/chrX_TD pindel/chrX/chrX_SI | grep ChrID > pindel/chrX/pindel.out.chrX.raw
+Finished job 24.
+34 of 49 steps (69%) done
+Finished job 45.
+35 of 49 steps (71%) done
+
+rule filter_pindel:
+    input: pindel/chr11/pindel.out.chr11.raw
+    output: pindel/chr11/pindel.out.chr11.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 21
+    wildcards: ix=11
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr11/pindel.input.chr11.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr1/pindel.out.chr1.raw
+    jobid: 32
+    wildcards: ix=1
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 1 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr1/chr1 ; cat pindel/chr1/chr1_D pindel/chr1/chr1_INV pindel/chr1/chr1_TD pindel/chr1/chr1_SI | grep ChrID > pindel/chr1/pindel.out.chr1.raw
+Finished job 21.
+36 of 49 steps (73%) done
+Finished job 37.
+37 of 49 steps (76%) done
+
+rule filter_pindel:
+    input: pindel/chrX/pindel.out.chrX.raw
+    output: pindel/chrX/pindel.out.chrX.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 13
+    wildcards: ix=X
+
+perl scripts/pindel_filter.v0.5.pl pindel/chrX/pindel.input.chrX.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr17/pindel.out.chr17.raw
+    jobid: 47
+    wildcards: ix=17
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 17 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr17/chr17 ; cat pindel/chr17/chr17_D pindel/chr17/chr17_INV pindel/chr17/chr17_TD pindel/chr17/chr17_SI | grep ChrID > pindel/chr17/pindel.out.chr17.raw
+Finished job 13.
+38 of 49 steps (78%) done
+Finished job 33.
+39 of 49 steps (80%) done
+
+rule filter_pindel:
+    input: pindel/chr7/pindel.out.chr7.raw
+    output: pindel/chr7/pindel.out.chr7.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 9
+    wildcards: ix=7
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr7/pindel.input.chr7.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr15/pindel.out.chr15.raw
+    jobid: 26
+    wildcards: ix=15
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 15 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr15/chr15 ; cat pindel/chr15/chr15_D pindel/chr15/chr15_INV pindel/chr15/chr15_TD pindel/chr15/chr15_SI | grep ChrID > pindel/chr15/pindel.out.chr15.raw
+Finished job 9.
+40 of 49 steps (82%) done
+Finished job 47.
+41 of 49 steps (84%) done
+
+rule filter_pindel:
+    input: pindel/chr17/pindel.out.chr17.raw
+    output: pindel/chr17/pindel.out.chr17.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 23
+    wildcards: ix=17
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr17/pindel.input.chr17.37.txt
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr22/pindel.out.chr22.raw
+    jobid: 27
+    wildcards: ix=22
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 22 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr22/chr22 ; cat pindel/chr22/chr22_D pindel/chr22/chr22_INV pindel/chr22/chr22_TD pindel/chr22/chr22_SI | grep ChrID > pindel/chr22/pindel.out.chr22.raw
+Finished job 23.
+42 of 49 steps (86%) done
+Finished job 26.
+43 of 49 steps (88%) done
+
+rule filter_pindel:
+    input: pindel/chr15/pindel.out.chr15.raw
+    output: pindel/chr15/pindel.out.chr15.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 2
+    wildcards: ix=15
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr15/pindel.input.chr15.37.txt
+Finished job 2.
+44 of 49 steps (90%) done
+Finished job 27.
+45 of 49 steps (92%) done
+
+rule filter_pindel:
+    input: pindel/chr22/pindel.out.chr22.raw
+    output: pindel/chr22/pindel.out.chr22.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 3
+    wildcards: ix=22
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr22/pindel.input.chr22.37.txt
+Finished job 3.
+46 of 49 steps (94%) done
+Finished job 32.
+47 of 49 steps (96%) done
+
+rule filter_pindel:
+    input: pindel/chr1/pindel.out.chr1.raw
+    output: pindel/chr1/pindel.out.chr1.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    jobid: 8
+    wildcards: ix=1
+
+perl scripts/pindel_filter.v0.5.pl pindel/chr1/pindel.input.chr1.37.txt
+Finished job 8.
+48 of 49 steps (98%) done
+
+rule pindel_merge_vcf:
+    input: pindel/chr1/pindel.out.chr1.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr2/pindel.out.chr2.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr3/pindel.out.chr3.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr4/pindel.out.chr4.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr5/pindel.out.chr5.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr6/pindel.out.chr6.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr7/pindel.out.chr7.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr8/pindel.out.chr8.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr9/pindel.out.chr9.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr10/pindel.out.chr10.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr11/pindel.out.chr11.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr12/pindel.out.chr12.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr13/pindel.out.chr13.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr14/pindel.out.chr14.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr15/pindel.out.chr15.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr16/pindel.out.chr16.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr17/pindel.out.chr17.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr18/pindel.out.chr18.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr19/pindel.out.chr19.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr20/pindel.out.chr20.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr21/pindel.out.chr21.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chr22/pindel.out.chr22.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chrX/pindel.out.chrX.raw.CvgVafStrand_pass.Homopolymer_pass.vcf, pindel/chrY/pindel.out.chrY.raw.CvgVafStrand_pass.Homopolymer_pass.vcf
+    output: pindel.vcf
+    jobid: 0
+
+/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/python /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/.snakemake/scripts/1y455v3e.wrapper.py
+    Error in rule pindel_merge_vcf:
+        jobid: 0
+        output: pindel.vcf
+
+RuleException:
+CalledProcessError in line 131 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  /diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/bin/python /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/.snakemake/scripts/1y455v3e.wrapper.py ' returned non-zero exit status 1.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 131, in __rule_pindel_merge_vcf
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job pindel_merge_vcf since they might be corrupted:
+pindel.vcf
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/.snakemake/log/2018-07-07T120030.125071.snakemake.log

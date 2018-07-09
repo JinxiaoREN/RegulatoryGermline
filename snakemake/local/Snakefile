@@ -58,7 +58,7 @@ rule varscan_mpileup2snp:
          bam = BAM
     output:"varscan.snp.chr{ix}.vcf"
     params: chr="{ix}"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk 'NR==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -r {params.chr} {input.bam} | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
 
 rule varscan_mpileup2indel:
     input:
@@ -66,15 +66,27 @@ rule varscan_mpileup2indel:
          bam = BAM
     output:"varscan.indel.chr{ix}.vcf"
     params: chr="{ix}"
-    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -R chr{params.chr} {input.bam} | awk 'NR==6' | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+    shell: "samtools mpileup -q 1 -Q 13 -f {input.genome_fa} -r {params.chr} {input.bam} | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > {output}"
+
+rule varscan_snp_index:
+    input: "varscan.snp.chr{ix}.vcf"
+    output: "varscan.snp.chr{ix}.vcf.gz"
+    shell: "bcftools view {input} -Oz -o {output}; bcftools index {output}"
+
+rule varscan_indel_index:
+    input: "varscan.indel.chr{ix}.vcf"
+    output: "varscan.indel.chr{ix}.vcf.gz"
+    shell: "bcftools view {input} -Oz -o {output}; bcftools index {output}"
+
+
 
 rule varscan_merge_snp_vcf:
-    input: calls= expand('varscan.snp.chr{ix}.vcf', ix=CHR)
+    input: calls= expand('varscan.snp.chr{ix}.vcf.gz', ix=CHR)
     output: "varscan.snp.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
 rule varscan_merge_indel_vcf:
-    input: calls= expand('varscan.indel.chr{ix}.vcf', ix=CHR)
+    input: calls= expand('varscan.indel.chr{ix}.vcf.gz', ix=CHR)
     output: "varscan.indel.vcf"
     wrapper: "0.26.0/bio/bcftools/concat"
 
@@ -96,7 +108,7 @@ rule pindel_call:
         extra="-x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c {ix}",
         chr="{ix}"
     threads: 4
-    shell: "pindel {params.extra} -T {threads} -f {input.ref} -i {input.config} -o {params.prefix} | cat pindel/chr{params.chr}/chr{params.chr}_D pindel/chr{params.chr}/chr{params.chr}_INV pindel/chr{params.chr}_TD pindel/chr{params.chr}_SI | grep ChrID > {output}"
+    shell: "pindel {params.extra} -T {threads} -f {input.ref} -i {input.config} -o {params.prefix} ; cat pindel/chr{params.chr}/chr{params.chr}_D pindel/chr{params.chr}/chr{params.chr}_INV pindel/chr{params.chr}/chr{params.chr}_TD pindel/chr{params.chr}/chr{params.chr}_SI | grep ChrID > {output}"
 
 #Generate the config file for pindel_filter.v0.5.pl
 for ix in CHR:
@@ -125,29 +137,35 @@ rule filter_pindel:
     params: chr='{ix}'
     shell: "perl scripts/pindel_filter.v0.5.pl pindel/chr{params.chr}/pindel.input.chr{params.chr}.37.txt"
 
+rule index_pindel:
+    input: "pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf"
+    output: "pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf.gz"
+    params: chr='{ix}'
+    shell: 'bcftools view {input} -Oz -o {output}; bcftools index {output}'
+
 rule pindel_merge_vcf:
-    input: calls=expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf", ix=CHR)
+    input: calls=expand("pindel/chr{ix}/pindel.out.chr{ix}.raw.CvgVafStrand_pass.Homopolymer_pass.vcf.gz", ix=CHR)
     output: "pindel.vcf"
     wrapper: "0.27.0/bio/bcftools/concat"
 
 rule all_tools:
-    input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf", "pindel.vcf"
+    input: "gatk.snp.filtered.vcf", "gatk.indel.filtered.vcf", "varscan.snp.filtered.vcf", "varscan.indel.filtered.vcf", "pindel.vcf"
 
 rule filter:
     input: "gatk.snp.vcf", "gatk.indel.vcf", "varscan.snp.vcf", "varscan.indel.vcf"
     output: "gatk.snp.filtered.vcf", "gatk.indel.filtered.vcf", "varscan.snp.filtered.vcf", "varscan.indel.filtered.vcf"
     shell: "perl scripts/filter_gatk_varscan.pl `pwd`"
 
-rule merge_vcf:
-    input: 
-        gsnp = "gatk.snp.filtered.vcf",
-        gindel = "gatk.indel.filtered.vcf",
-        vsnp = "varscan.snp.filtered.vcf", 
-        vindel = "varscan.indel.filtered.vcf",
-        pindel = "pindel.vcf",
-        genome_fa = GENOME_FA
-    output: "merged.vcf"
-    singularity: "docker://broadinstitute/gatk3:3.8-0"
-    shell: "java -Xms256m -Xmx512m -jar GenomeAnalysisTK.jar -T CombineVariants -R {input.genome_fa} -o {output} --variant:gsnp {input.gsnp} --variant:gindel {input.gindel} --variant:vsnp {input.vsnp} --variant:vindel {input.vindel} --variant:pindel {input.pindel} -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel"
+#rule merge_vcf:
+#    input: 
+#        gsnp = "gatk.snp.filtered.vcf",
+#        gindel = "gatk.indel.filtered.vcf",
+#        vsnp = "varscan.snp.filtered.vcf", 
+#        vindel = "varscan.indel.filtered.vcf",
+#        pindel = "pindel.vcf",
+#        genome_fa = GENOME_FA
+#    output: "merged.vcf"
+#    singularity: "docker://broadinstitute/gatk3:3.8-0"
+#    shell: "java -Xms256m -Xmx512m -jar GenomeAnalysisTK.jar -T CombineVariants -R {input.genome_fa} -o {output} --variant:gsnp {input.gsnp} --variant:gindel {input.gindel} --variant:vsnp {input.vsnp} --variant:vindel {input.vindel} --variant:pindel {input.pindel} -genotypeMergeOptions PRIORITIZE -priority gsnp,vsnp,gindel,vindel,pindel"
     
    

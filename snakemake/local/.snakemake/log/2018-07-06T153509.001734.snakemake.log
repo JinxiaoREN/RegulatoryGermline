@@ -1,0 +1,130 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	filter
+	24	filter_pindel
+	1	gatk_merge_indel_vcf
+	1	gatk_merge_snp_vcf
+	24	gatk_selectvariant_indel
+	24	gatk_selectvariant_snp
+	1	merge_vcf
+	24	pindel_call
+	1	pindel_merge_vcf
+	1	varscan_merge_indel_vcf
+	1	varscan_merge_snp_vcf
+	24	varscan_mpileup2indel
+	24	varscan_mpileup2snp
+	151
+
+rule varscan_mpileup2snp:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
+    output: varscan.snp.chr3.vcf
+    jobid: 77
+    wildcards: ix=3
+
+samtools mpileup -q 1 -Q 13 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -r 3 /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam | awk 'NR==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > varscan.snp.chr3.vcf
+
+rule varscan_mpileup2snp:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
+    output: varscan.snp.chr14.vcf
+    jobid: 76
+    wildcards: ix=14
+
+samtools mpileup -q 1 -Q 13 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -r 14 /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam | awk 'NR==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > varscan.snp.chr14.vcf
+
+rule varscan_mpileup2indel:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam
+    output: varscan.indel.chr5.vcf
+    jobid: 106
+    wildcards: ix=5
+
+samtools mpileup -q 1 -Q 13 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -r 5 /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam | awk 'NR==6' | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > varscan.indel.chr5.vcf
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr17/pindel.out.chr17.raw
+    jobid: 32
+    wildcards: ix=17
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 17 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr17/chr17 | cat pindel/chr17/chr17_D pindel/chr17/chr17_INV pindel/chr17_TD pindel/chr17_SI | grep ChrID > pindel/chr17/pindel.out.chr17.raw
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr22/pindel.out.chr22.raw
+    jobid: 53
+    wildcards: ix=22
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 22 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr22/chr22 | cat pindel/chr22/chr22_D pindel/chr22/chr22_INV pindel/chr22_TD pindel/chr22_SI | grep ChrID > pindel/chr22/pindel.out.chr22.raw
+
+rule pindel_call:
+    input: /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa, /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam, pindel_config.txt
+    output: pindel/chr19/pindel.out.chr19.raw
+    jobid: 37
+    wildcards: ix=19
+    threads: 4
+
+pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 19 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr19/chr19 | cat pindel/chr19/chr19_D pindel/chr19/chr19_INV pindel/chr19_TD pindel/chr19_SI | grep ChrID > pindel/chr19/pindel.out.chr19.raw
+    Error in rule pindel_call:
+        jobid: 32
+        output: pindel/chr17/pindel.out.chr17.raw
+
+RuleException:
+CalledProcessError in line 99 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 17 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr17/chr17 | cat pindel/chr17/chr17_D pindel/chr17/chr17_INV pindel/chr17_TD pindel/chr17_SI | grep ChrID > pindel/chr17/pindel.out.chr17.raw ' returned non-zero exit status 1.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 99, in __rule_pindel_call
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job pindel_call since they might be corrupted:
+pindel/chr17/pindel.out.chr17.raw
+    Error in rule pindel_call:
+        jobid: 53
+        output: pindel/chr22/pindel.out.chr22.raw
+
+RuleException:
+CalledProcessError in line 99 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 22 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr22/chr22 | cat pindel/chr22/chr22_D pindel/chr22/chr22_INV pindel/chr22_TD pindel/chr22_SI | grep ChrID > pindel/chr22/pindel.out.chr22.raw ' returned non-zero exit status 1.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 99, in __rule_pindel_call
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job pindel_call since they might be corrupted:
+pindel/chr22/pindel.out.chr22.raw
+    Error in rule pindel_call:
+        jobid: 37
+        output: pindel/chr19/pindel.out.chr19.raw
+
+RuleException:
+CalledProcessError in line 99 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  pindel -x 4 -w 0.1 -B 0 -M 3 -J pindel-centromere-exclude.bed -c 19 -T 4 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -i pindel_config.txt -o pindel/chr19/chr19 | cat pindel/chr19/chr19_D pindel/chr19/chr19_INV pindel/chr19_TD pindel/chr19_SI | grep ChrID > pindel/chr19/pindel.out.chr19.raw ' returned non-zero exit status 1.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 99, in __rule_pindel_call
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job pindel_call since they might be corrupted:
+pindel/chr19/pindel.out.chr19.raw
+Finished job 76.
+1 of 151 steps (0.66%) done
+Terminating processes on user request, this might take some time.
+    Error in rule varscan_mpileup2snp:
+        jobid: 77
+        output: varscan.snp.chr3.vcf
+
+RuleException:
+CalledProcessError in line 61 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  samtools mpileup -q 1 -Q 13 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -r 3 /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam | awk 'NR==6' | varscan mpileup2snp - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > varscan.snp.chr3.vcf ' died with <Signals.SIGINT: 2>.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 61, in __rule_varscan_mpileup2snp
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job varscan_mpileup2snp since they might be corrupted:
+varscan.snp.chr3.vcf
+    Error in rule varscan_mpileup2indel:
+        jobid: 106
+        output: varscan.indel.chr5.vcf
+
+RuleException:
+CalledProcessError in line 69 of /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile:
+Command ' set -euo pipefail;  samtools mpileup -q 1 -Q 13 -f /diskmnt/Datasets/Reference/human_genome/GRCh37-lite/GRCh37-lite.fa -r 5 /diskmnt/Datasets/TCGA/example_BAM/TCGA-73-4677-11A-01D-1203-02_IlluminaHiSeq-DNASeq_whole.bam | awk 'NR==6' | varscan mpileup2indel - --min-coverage 3 --min-var-freq 0.10 --p-value 0.10 --strand-filter 1 --output-vcf 1 > varscan.indel.chr5.vcf ' died with <Signals.SIGINT: 2>.
+  File "/diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/Snakefile", line 69, in __rule_varscan_mpileup2indel
+  File "/diskmnt/Projects/Users/wliang/miniconda3/envs/snakemake/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job varscan_mpileup2indel since they might be corrupted:
+varscan.indel.chr5.vcf
+Complete log: /diskmnt/Projects/Users/wliang/Germline_Noncoding/RegulatoryGermline/snakemake/local/.snakemake/log/2018-07-06T153509.001734.snakemake.log
